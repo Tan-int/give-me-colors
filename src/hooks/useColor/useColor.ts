@@ -114,3 +114,7 @@ const getColorCodeType = (colorCode: string) => {
 const toRgbString = (r: number, g: number, b: number) => {
   return `rgb(${r}, ${g}, ${b})`;
 };
+
+const toHexString = (r: string, g: string, b: string) => {
+  return `#${r}${g}${b}`;
+};
