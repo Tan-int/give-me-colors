@@ -22,16 +22,17 @@ export const colorPicker = (colorCode: string) => {
 };
 
 const getColorCodeType = (colorCode: string) => {
-  const rgbMatch = colorCode
-    .replace(/[^\d,]/g, '')
-    .split(',')
-    .filter(Boolean);
+  const rgbMatch = colorCode.replace(/[^\d,]/g, '').split(',');
 
   const hexMatch = colorCode
     .replace(/^#/, '')
     .match(/^([0-9A-Fa-f]{3}|[0-9A-Fa-f]{5}|[0-9A-Fa-f]{6})$/);
 
-  if (rgbMatch && colorCode.toLowerCase().startsWith('rgb')) {
+  if (
+    rgbMatch &&
+    rgbMatch.length === 3 &&
+    colorCode.toLowerCase().startsWith('rgb')
+  ) {
     return getRgbCode(rgbMatch);
   }
 

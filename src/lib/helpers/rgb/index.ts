@@ -1,8 +1,11 @@
 import { MAX_COLOR_CHANNEL_VALUE } from '@/lib/utils/constants';
 
 export const getRgbCode = (match: string[]) => {
-  const [r = 0, g = 0, b = 0] = match.map(hex => {
+  const [r, g, b = 0] = match.map(hex => {
     const value = parseInt(hex);
+
+    if (isNaN(value)) return 0;
+
     return value > MAX_COLOR_CHANNEL_VALUE ? MAX_COLOR_CHANNEL_VALUE : value;
   });
 
