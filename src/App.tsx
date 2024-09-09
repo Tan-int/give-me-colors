@@ -1,10 +1,10 @@
 import Input from '@components/Input';
 import { ChangeEvent, useState } from 'react';
-import { useColor } from './hooks/useColor/useColor';
+import { colorPicker } from './lib/services/colorPicker';
 
 function App() {
-  const [input, setInput] = useState<string>('#BF3131');
-  const color = useColor(input);
+  const [input, setInput] = useState<string>('rgb(0, 191, 255)');
+  const color = colorPicker(input);
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const input = event.target.value;
@@ -20,7 +20,7 @@ function App() {
       <Input input={input} setInput={handleInputChange} />
       <div
         className="h-[200px] w-[200px]"
-        style={{ backgroundColor: input }}
+        style={{ backgroundColor: color.hex }}
       ></div>
     </div>
   );
