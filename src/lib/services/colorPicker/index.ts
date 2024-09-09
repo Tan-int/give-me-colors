@@ -1,18 +1,17 @@
-import { COLOR_CODE_TYPE } from '@/lib/utils/constants';
-import { getHexCode } from '@/lib/helpers/hex';
-import { getRgbCode } from '@/lib/helpers/rgb';
+import { getHexCode, toHexString } from '@/lib/helpers/hex';
+import { getRgbCode, toRgbString } from '@/lib/helpers/rgb';
 
 let lastValidColorCode = 'rgb(0, 191, 255)';
 let hex = '';
 let rgb = '';
 
 export const colorPicker = (colorCode: string) => {
-  const colorCodeType = getColorCodeType(colorCode);
+  const [r, g, b] = getColorCodeType(colorCode);
 
-  if (colorCodeType) {
+  if (r !== undefined && g !== undefined && b !== undefined) {
     lastValidColorCode = colorCode;
-    hex = getHexCode(colorCode, colorCodeType);
-    rgb = getRgbCode(colorCode, colorCodeType);
+    hex = toHexString(r, g, b);
+    rgb = toRgbString(r, g, b);
   }
 
   return {
@@ -31,16 +30,20 @@ const getColorCodeType = (colorCode: string) => {
   const hexMatch = colorCode.match(/[0-9A-Fa-f]{6}/g);
 
   if (hexMatch && colorCode.length === 7) {
-    return COLOR_CODE_TYPE.HEX;
+    return getHexCode(hexMatch);
   }
 
-  if (rgbMatch && rgbMatch.length === 3) {
-    return COLOR_CODE_TYPE.RGB;
+  if (
+    rgbMatch &&
+    rgbMatch.length === 3 &&
+    colorCode.toLowerCase().startsWith('rgb')
+  ) {
+    return getRgbCode(rgbMatch);
   }
 
   if (colorCode.toLowerCase().startsWith('hsl')) {
-    return COLOR_CODE_TYPE.HSL;
+    return [0, 0, 0];
   }
 
-  return null;
+  return [undefined];
 };
