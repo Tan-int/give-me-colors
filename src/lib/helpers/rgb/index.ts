@@ -6,14 +6,12 @@ export const getRgbCode = (match: string[]) => {
     b = 0;
 
   if (match) {
-    [r, g, b] = match.map(hex => parseInt(hex));
+    [r, g, b] = match.map(hex => {
+      const value = parseInt(hex);
+      return value > MAX_COLOR_CHANNEL_VALUE ? MAX_COLOR_CHANNEL_VALUE : value;
+    });
   }
 
-  if (r > MAX_COLOR_CHANNEL_VALUE) r = MAX_COLOR_CHANNEL_VALUE;
-
-  if (g > MAX_COLOR_CHANNEL_VALUE) g = MAX_COLOR_CHANNEL_VALUE;
-
-  if (b > MAX_COLOR_CHANNEL_VALUE) b = MAX_COLOR_CHANNEL_VALUE;
   return [r, g, b];
 };
 

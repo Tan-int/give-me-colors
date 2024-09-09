@@ -27,7 +27,7 @@ const getColorCodeType = (colorCode: string) => {
     .split(',')
     .filter(Boolean);
 
-  const hexMatch = colorCode.match(/[0-9A-Fa-f]{6}/g);
+  const hexMatch = colorCode.replace(/^#/, '').match(/.{1,2}/g);
 
   if (hexMatch && colorCode.length === 7) {
     return getHexCode(hexMatch);
