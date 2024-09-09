@@ -34,4 +34,24 @@ export const hexToRgb = (colorCode: string) => {
   }
 
   return '';
+const getColorCodeType = (colorCode: string) => {
+  const rgbMatch = colorCode
+    .replace(/[^\d,]/g, '')
+    .split(',')
+    .filter(Boolean);
+
+  if (colorCode.startsWith('#') && colorCode.length === 7) {
+    return COLOR_CODE_TYPE.HEX;
+  }
+
+  if (rgbMatch && rgbMatch.length === 3) {
+    return COLOR_CODE_TYPE.RGB;
+  }
+
+  if (colorCode.toLowerCase().startsWith('hsl')) {
+    return COLOR_CODE_TYPE.HSL;
+  }
+
+  return null;
+};
 };
