@@ -1,5 +1,5 @@
-import { getHexCode, toHexString } from '@/lib/helpers/hex';
-import { getRgbCode, toRgbString } from '@/lib/helpers/rgb';
+import { getRgbFromHexCode, toHexString } from '@/lib/helpers/hex';
+import { getRgbCodeFromRgbString, toRgbString } from '@/lib/helpers/rgb';
 
 let lastValidColorCode = 'rgb(0, 191, 255)';
 let hex = '';
@@ -33,7 +33,7 @@ const getColorCodeType = (colorCode: string) => {
     rgbMatch.length === 3 &&
     colorCode.toLowerCase().startsWith('rgb')
   ) {
-    return getRgbCode(rgbMatch);
+    return getRgbCodeFromRgbString(rgbMatch);
   }
 
   if (colorCode.toLowerCase().startsWith('hsl')) {
@@ -41,7 +41,7 @@ const getColorCodeType = (colorCode: string) => {
   }
 
   if (hexMatch) {
-    return getHexCode(hexMatch);
+    return getRgbFromHexCode(hexMatch);
   }
 
   return [undefined];

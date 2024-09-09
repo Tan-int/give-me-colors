@@ -1,15 +1,16 @@
-export const getHexCode = (match: string[]) => {
+export const getRgbFromHexCode = (hexMatch: string[]) => {
   const HEX_NUMBER_FORMAT = 16;
   let r = 0,
     g = 0,
     b = 0;
 
-  if (match.length === 0) {
+  if (hexMatch.length === 0) {
     return [r, g, b];
   }
 
-  let hexCode = match[0];
+  let hexCode = hexMatch[0];
 
+  //convert shorthand hex code to six digit
   if (hexCode.length === 3) {
     hexCode = hexCode
       .split('')
@@ -19,8 +20,8 @@ export const getHexCode = (match: string[]) => {
 
   const colorChannels = hexCode.replace(/^#/, '').match(/.{1,2}/g);
   if (colorChannels) {
-    [r, g, b] = colorChannels.map(hex => {
-      const value = parseInt(hex, HEX_NUMBER_FORMAT);
+    [r, g, b] = colorChannels.map(colorChannel => {
+      const value = parseInt(colorChannel, HEX_NUMBER_FORMAT);
       return isNaN(value) ? 0 : value;
     });
   }
