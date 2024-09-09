@@ -13,7 +13,6 @@ export const color = (colorCode: string) => {
     rgb = getRgbCode(colorCode, colorCodeType);
   }
 
-  console.log(hex);
   return {
     colorCode: lastValidColorCode,
     rgb: rgb,
@@ -32,13 +31,9 @@ const getRgbCode = (colorCode: string, colorCodeType: COLOR_CODE_TYPE) => {
     b = 0;
   if (colorCodeType === COLOR_CODE_TYPE.HEX) {
     [r, g, b] = hexToRgb(colorCode);
-  }
-
-  if (colorCodeType === COLOR_CODE_TYPE.HSL) {
+  } else if (colorCodeType === COLOR_CODE_TYPE.HSL) {
     // hsl to rgb code here
-  }
-
-  if (match) {
+  } else if (match) {
     [r, g, b] = match.map(hex => parseInt(hex));
   }
 
@@ -46,18 +41,25 @@ const getRgbCode = (colorCode: string, colorCodeType: COLOR_CODE_TYPE) => {
 };
 
 const getHexCode = (colorCode: string, colorCodeType: COLOR_CODE_TYPE) => {
+  const match = colorCode.replace(/^#/, '').match(/.{1,2}/g);
+  let r = '00',
+    g = '00',
+    b = '00';
   if (colorCodeType === COLOR_CODE_TYPE.RGB) {
-    return rgbToHex(colorCode);
-  }
-
-  if (colorCodeType === COLOR_CODE_TYPE.HSL) {
+    [r, g, b] = rgbToHex(colorCode);
+  } else if (colorCodeType === COLOR_CODE_TYPE.HSL) {
     // hsl to hex here
+  } else if (match) {
+    [r, g, b] = match;
   }
 
-  return colorCode;
+  return toHexString(r, g, b);
 };
 
 const rgbToHex = (colorCode: string) => {
+  let r = 0,
+    g = 0,
+    b = 0;
   const match = colorCode
     .replace(/[^\d,]/g, '')
     .split(',')
@@ -69,10 +71,9 @@ const rgbToHex = (colorCode: string) => {
   };
 
   if (match) {
-    const [r, g, b] = match.map(colorChannel => parseInt(colorChannel));
-    return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
+    [r, g, b] = match.map(colorChannel => parseInt(colorChannel));
   }
-  return '';
+  return [toHex(r), toHex(g), toHex(b)];
 };
 
 const hexToRgb = (colorCode: string) => {
@@ -96,7 +97,9 @@ const getColorCodeType = (colorCode: string) => {
     .split(',')
     .filter(Boolean);
 
-  if (colorCode.startsWith('#') && colorCode.length === 7) {
+  const hexMatch = colorCode.match(/[0-9A-Fa-f]{6}/g);
+
+  if (hexMatch && colorCode.length === 7) {
     return COLOR_CODE_TYPE.HEX;
   }
 
