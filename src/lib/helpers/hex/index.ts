@@ -1,12 +1,25 @@
 export const getHexCode = (match: string[]) => {
+  const HEX_NUMBER_FORMAT = 16;
   let r = 0,
     g = 0,
     b = 0;
-  // TODO: handle shorthand hex code
-  const HEX_NUMBER_FORMAT = 16;
 
-  if (match) {
-    [r, g, b] = match.map(hex => {
+  if (match.length === 0) {
+    return [r, g, b];
+  }
+
+  let hexCode = match[0];
+
+  if (hexCode.length === 3) {
+    hexCode = hexCode
+      .split('')
+      .map(char => char + char)
+      .join('');
+  }
+
+  const colorChannels = hexCode.replace(/^#/, '').match(/.{1,2}/g);
+  if (colorChannels) {
+    [r, g, b] = colorChannels.map(hex => {
       const value = parseInt(hex, HEX_NUMBER_FORMAT);
       return isNaN(value) ? 0 : value;
     });
@@ -22,6 +35,5 @@ export const toHexString = (r: number, g: number, b: number) => {
     return hex.length === 1 ? '0' + hex : hex;
   };
 
-  console.log(r, g, b);
   return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
 };

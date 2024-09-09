@@ -27,22 +27,20 @@ const getColorCodeType = (colorCode: string) => {
     .split(',')
     .filter(Boolean);
 
-  const hexMatch = colorCode.replace(/^#/, '').match(/.{1,2}/g);
+  const hexMatch = colorCode
+    .replace(/^#/, '')
+    .match(/^([0-9A-Fa-f]{3}|[0-9A-Fa-f]{5}|[0-9A-Fa-f]{6})$/);
 
-  if (hexMatch && colorCode.length === 7) {
-    return getHexCode(hexMatch);
-  }
-
-  if (
-    rgbMatch &&
-    rgbMatch.length === 3 &&
-    colorCode.toLowerCase().startsWith('rgb')
-  ) {
+  if (rgbMatch && colorCode.toLowerCase().startsWith('rgb')) {
     return getRgbCode(rgbMatch);
   }
 
   if (colorCode.toLowerCase().startsWith('hsl')) {
     return [0, 0, 0];
+  }
+
+  if (hexMatch) {
+    return getHexCode(hexMatch);
   }
 
   return [undefined];
