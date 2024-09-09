@@ -69,23 +69,27 @@ const rgbToHex = (colorCode: string) => {
   };
 
   if (match) {
-    const [, r, g, b] = match.map(colorChannel => parseInt(colorChannel));
+    const [r, g, b] = match.map(colorChannel => parseInt(colorChannel));
     return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
   }
   return '';
 };
 
-export const hexToRgb = (colorCode: string) => {
+const hexToRgb = (colorCode: string) => {
+  let r = 0,
+    g = 0,
+    b = 0;
   // TODO: handle shorthand hex code
   const HEX_NUMBER_FORMAT = 16;
   const match = colorCode.replace(/^#/, '').match(/.{1,2}/g);
 
   if (match) {
-    const [r, g, b] = match.map(hex => parseInt(hex, HEX_NUMBER_FORMAT));
-    return `rgb(${r}, ${g}, ${b})`;
+    [r, g, b] = match.map(hex => parseInt(hex, HEX_NUMBER_FORMAT));
   }
 
-  return '';
+  return [r, g, b];
+};
+
 const getColorCodeType = (colorCode: string) => {
   const rgbMatch = colorCode
     .replace(/[^\d,]/g, '')
@@ -106,4 +110,7 @@ const getColorCodeType = (colorCode: string) => {
 
   return null;
 };
+
+const toRgbString = (r: number, g: number, b: number) => {
+  return `rgb(${r}, ${g}, ${b})`;
 };
