@@ -1,17 +1,15 @@
-import { ChangeEvent } from 'react';
+import { InputHTMLAttributes } from 'react';
+import { cn } from '@/lib/utils/cn';
 
-type InputProps = {
-  input: string | undefined;
-  setInput: (event: ChangeEvent<HTMLInputElement>) => void;
+type InputProps = InputHTMLAttributes<HTMLInputElement> & {
+  className?: string | undefined;
 };
 
-export default function Input({ input, setInput }: InputProps) {
+export default function Input({ className, ...props }: InputProps) {
   return (
     <input
-      value={input}
-      onChange={setInput}
-      type="text"
-      className="boder-1 border border-black"
+      className={cn('rounded-full px-6 py-4 text-xl', className)}
+      {...props}
     />
   );
 }
