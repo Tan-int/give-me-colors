@@ -1,6 +1,3 @@
-export const DEFAULT_HEX_CODE = '#BF3131';
-export const DEFAULT_RGB_CODE = 'rgb(191, 49, 49)';
-
 export const MAX_COLOR_CHANNEL_VALUE = 255;
 
 export enum COLOR_CODE_TYPE {
@@ -9,3 +6,5 @@ export enum COLOR_CODE_TYPE {
   RGB = 2,
   HSL = 3,
 }
+
+export const INITIAL_COLOR_CODE = '#D24545';

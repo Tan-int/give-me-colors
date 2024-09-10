@@ -1,9 +1,10 @@
 import Input from '@components/Input';
 import { ChangeEvent, useState } from 'react';
 import { colorPicker } from './lib/services/colorPicker';
+import { INITIAL_COLOR_CODE } from './lib/utils/constants';
 
 function App() {
-  const [input, setInput] = useState<string>('hsl(120, 100%, 50%)');
+  const [input, setInput] = useState<string>(INITIAL_COLOR_CODE);
   const color = colorPicker(input);
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {

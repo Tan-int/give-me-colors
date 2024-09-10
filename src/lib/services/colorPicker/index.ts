@@ -2,7 +2,7 @@ import { getRgbFromHexCode, toHexString } from '@/lib/helpers/hex';
 import { getRgbFromHsl, toHslString } from '@/lib/helpers/hsl';
 import { getRgbCodeFromRgbString, toRgbString } from '@/lib/helpers/rgb';
 
-let lastValidColorCode = 'rgb(0, 191, 255)';
+let lastValidColorCode = '';
 let hex = '';
 let rgb = '';
 let hsl = '';
