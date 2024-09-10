@@ -1,9 +1,11 @@
 import { getRgbFromHexCode, toHexString } from '@/lib/helpers/hex';
+import { getRgbFromHsl, toHslString } from '@/lib/helpers/hsl';
 import { getRgbCodeFromRgbString, toRgbString } from '@/lib/helpers/rgb';
 
 let lastValidColorCode = 'rgb(0, 191, 255)';
 let hex = '';
 let rgb = '';
+let hsl = '';
 
 export const colorPicker = (colorCode: string) => {
   const [r, g, b] = getColorCodeType(colorCode);
@@ -12,12 +14,14 @@ export const colorPicker = (colorCode: string) => {
     lastValidColorCode = colorCode;
     hex = toHexString(r, g, b);
     rgb = toRgbString(r, g, b);
+    hsl = toHslString(r, g, b);
   }
 
   return {
     colorCode: lastValidColorCode,
     rgb: rgb,
     hex: hex,
+    hsl: hsl,
   };
 };
 
@@ -28,6 +32,8 @@ const getColorCodeType = (colorCode: string) => {
     .replace(/^#/, '')
     .match(/^([0-9A-Fa-f]{3}|[0-9A-Fa-f]{5}|[0-9A-Fa-f]{6})$/);
 
+  const hslMatch = colorCode.replace(/[^\d,]/g, '').split(',');
+
   if (
     rgbMatch &&
     rgbMatch.length === 3 &&
@@ -36,8 +42,8 @@ const getColorCodeType = (colorCode: string) => {
     return getRgbCodeFromRgbString(rgbMatch);
   }
 
-  if (colorCode.toLowerCase().startsWith('hsl')) {
-    return [0, 0, 0];
+  if (hslMatch && colorCode.toLowerCase().startsWith('hsl')) {
+    return getRgbFromHsl(hslMatch);
   }
 
   if (hexMatch) {

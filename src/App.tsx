@@ -3,7 +3,7 @@ import { ChangeEvent, useState } from 'react';
 import { colorPicker } from './lib/services/colorPicker';
 
 function App() {
-  const [input, setInput] = useState<string>('rgb(0, 191, 255)');
+  const [input, setInput] = useState<string>('hsl(120, 100%, 50%)');
   const color = colorPicker(input);
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -16,6 +16,7 @@ function App() {
       <div className="flex flex-row gap-x-4">
         <h5 className="semi-bold text-lg text-white">{color.hex}</h5>
         <h5 className="semi-bold text-lg text-white">{color.rgb}</h5>
+        <h5 className="semi-bold text-lg text-white">{color.hsl}</h5>
       </div>
       <Input input={input} setInput={handleInputChange} />
       <div
