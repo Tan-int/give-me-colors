@@ -1,12 +1,15 @@
-import { MAX_COLOR_CHANNEL_VALUE } from '@/lib/utils/constants';
+import { MAX_RGB_VALUE, MINIMUM_RGB_VALUE } from '@/lib/utils/constants';
 
 export const getRgbCodeFromRgbString = (colorChannels: string[]) => {
   const [r, g, b = 0] = colorChannels.map(colorChannel => {
-    const value = parseInt(colorChannel);
+    const parsedColorChannel = parseInt(colorChannel);
 
-    if (isNaN(value)) return 0;
+    if (isNaN(parsedColorChannel)) return 0;
 
-    return value > MAX_COLOR_CHANNEL_VALUE ? MAX_COLOR_CHANNEL_VALUE : value;
+    if (parsedColorChannel > MAX_RGB_VALUE) return MAX_RGB_VALUE;
+    if (parsedColorChannel < MINIMUM_RGB_VALUE) return MINIMUM_RGB_VALUE;
+
+    return parsedColorChannel;
   });
 
   return [r, g, b];
