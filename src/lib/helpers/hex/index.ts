@@ -1,5 +1,6 @@
+import { HEX_NUMBER_FORMAT } from '@/lib/utils/constants';
+
 export const getRgbFromHexCode = (hexMatch: string[]) => {
-  const HEX_NUMBER_FORMAT = 16;
   let r = 0,
     g = 0,
     b = 0;

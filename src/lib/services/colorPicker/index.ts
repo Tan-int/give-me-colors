@@ -2,7 +2,6 @@ import { getRgbFromHexCode, toHexString } from '@/lib/helpers/hex';
 import { getRgbFromHsl, toHslString } from '@/lib/helpers/hsl';
 import { getRgbCodeFromRgbString, toRgbString } from '@/lib/helpers/rgb';
 
-let lastValidColorCode = '';
 let hex = '';
 let rgb = '';
 let hsl = '';
@@ -11,14 +10,13 @@ export const colorPicker = (colorCode: string) => {
   const [r, g, b] = getColorCodeType(colorCode);
 
   if (r !== undefined && g !== undefined && b !== undefined) {
-    lastValidColorCode = colorCode;
     hex = toHexString(r, g, b);
     rgb = toRgbString(r, g, b);
     hsl = toHslString(r, g, b);
   }
 
   return {
-    colorCode: lastValidColorCode,
+    colorCode: colorCode,
     rgb: rgb,
     hex: hex,
     hsl: hsl,

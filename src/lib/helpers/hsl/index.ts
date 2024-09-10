@@ -1,3 +1,12 @@
+import {
+  MAX_HUE_VALUE,
+  MAXIMUM_LIGHTNESS_VALUE,
+  MAXIMUM_SATURATION_VALUE,
+  MINIMUM_HUE_VALUE,
+  MINIMUM_LIGHTNESS_VALUE,
+  MINIMUM_SATURATION_VALUE,
+} from '@/lib/utils/constants';
+
 export const getRgbFromHsl = (colorChannels: string[]) => {
   const [hue, saturation, lightness] = colorChannels;
   return hslToRgb(hue, saturation, lightness);
@@ -50,8 +59,6 @@ function hueToRgb(p: number, q: number, t: number) {
 }
 
 const getAdjustedHue = (hue: string) => {
-  const MINIMUM_HUE_VALUE = 0;
-  const MAX_HUE_VALUE = 360;
   let parsedHue = parseInt(hue);
 
   if (parsedHue > MAX_HUE_VALUE) parsedHue = MAX_HUE_VALUE;
@@ -63,8 +70,6 @@ const getAdjustedHue = (hue: string) => {
 };
 
 const getAdjustedSaturation = (saturation: string) => {
-  const MINIMUM_SATURATION_VALUE = 0;
-  const MAXIMUM_SATURATION_VALUE = 100;
   let parsedSaturation = parseInt(saturation);
 
   if (parsedSaturation > MAXIMUM_SATURATION_VALUE)
@@ -78,8 +83,6 @@ const getAdjustedSaturation = (saturation: string) => {
 };
 
 const getAdjustedLightness = (lightness: string) => {
-  const MINIMUM_LIGHTNESS_VALUE = 0;
-  const MAXIMUM_LIGHTNESS_VALUE = 100;
   let parsedLightness = parseInt(lightness);
 
   if (parsedLightness > MAXIMUM_LIGHTNESS_VALUE)
