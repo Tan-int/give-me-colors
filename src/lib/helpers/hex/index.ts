@@ -33,7 +33,9 @@ export const toHexString = (r: number, g: number, b: number) => {
   const toHex = (colorChannel: number) => {
     const hex = colorChannel.toString(16);
 
-    return hex.length === 1 ? '0' + hex : hex;
+    const hexCode = hex.length === 1 ? '0' + hex : hex;
+
+    return hexCode.toUpperCase();
   };
 
   return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
