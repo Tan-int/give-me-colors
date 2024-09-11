@@ -7,6 +7,8 @@ import {
   MINIMUM_SATURATION_VALUE,
 } from '@/lib/utils/constants';
 
+//TODO: Handle decimal inputs
+
 export const getRgbFromHsl = (colorChannels: string[]) => {
   const [hue, saturation, lightness] = colorChannels;
   return hslToRgb(hue, saturation, lightness);
