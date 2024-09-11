@@ -5,7 +5,7 @@ export default function ThemeToggle() {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <button onClick={toggleTheme}>
+    <button className="h-fit" onClick={toggleTheme}>
       {theme === 'light' ? <Sun /> : <MoonStar />}
     </button>
   );
