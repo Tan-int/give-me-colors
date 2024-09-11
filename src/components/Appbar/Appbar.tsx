@@ -9,7 +9,9 @@ export default function Appbar() {
         <img src={logo} />
       </div>
       <div className="flex w-full items-center justify-end gap-x-4 pr-3">
-        <Github />
+        <a href="https://github.com/Tan-int/give-me-colors">
+          <Github />
+        </a>
         <ThemeToggle />
       </div>
     </div>
