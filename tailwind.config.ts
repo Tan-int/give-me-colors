@@ -42,7 +42,6 @@ const config = {
       colors: {
         border: 'hsl(var(--border))',
         input: {
-          DEFAULT: 'hsl(var(--input))',
           foreground: 'hsl(var(--input-foreground))',
         },
         ring: 'hsl(var(--ring))',

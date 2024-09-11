@@ -8,7 +8,10 @@ type InputProps = InputHTMLAttributes<HTMLInputElement> & {
 export default function Input({ className, ...props }: InputProps) {
   return (
     <input
-      className={cn('rounded-full px-6 py-4 text-xl', className)}
+      className={cn(
+        'rounded-md border px-3 py-2 text-base text-input-foreground placeholder:text-muted-foreground',
+        className
+      )}
       {...props}
     />
   );
