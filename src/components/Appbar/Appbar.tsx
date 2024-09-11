@@ -4,7 +4,7 @@ import Github from '@components/GithubIcon';
 
 export default function Appbar() {
   return (
-    <div className="flex w-full justify-between px-3 py-2">
+    <div className="flex w-full justify-between px-3 py-4 pb-2">
       <div className="h-auto w-12">
         <img src={logo} />
       </div>
