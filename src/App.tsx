@@ -3,6 +3,7 @@ import { INITIAL_COLOR_CODE } from '@/lib/utils/constants';
 import Appbar from '@components/Appbar';
 import Input from '@components/Input';
 import { ChangeEvent, useState } from 'react';
+import ColorInfo from './components/ColorInfo';
 
 function App() {
   const [input, setInput] = useState<string>(INITIAL_COLOR_CODE);
@@ -23,12 +24,15 @@ function App() {
             Convert between HEX, RGB, and HSL color formats
           </p>
         </div>
-        <div className="h-full w-full border p-6">
+        <div className="h-full w-full space-y-4 p-6">
           <Input
             value={input}
             onChange={handleInputChange}
             className="w-full text-base"
           />
+          <ColorInfo colorModel="HEX" colorCode={color.hex} />
+          <ColorInfo colorModel="HSL" colorCode={color.hsl} />
+          <ColorInfo colorModel="RGB" colorCode={color.rgb} />
         </div>
       </div>
     </div>
