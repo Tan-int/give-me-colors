@@ -5,12 +5,10 @@ type ColorInfoProps = {
 
 export default function ColorInfo({ colorModel, colorCode }: ColorInfoProps) {
   return (
-    <div className="flex border">
-      <div className="flex items-center space-x-2">
-        <div className="flex w-[55px] items-center justify-center bg-[#252525] px-3 py-2">
-          <span>{colorModel}</span>
-        </div>
-        <span>{colorCode}</span>
+    <div className="flex flex-col gap-y-1">
+      <h6 className="text-sm">{colorModel}</h6>
+      <div className="flex flex-col gap-y-1 border px-3 py-2">
+        <p className="text-sm opacity-90">{colorCode}</p>
       </div>
     </div>
   );
