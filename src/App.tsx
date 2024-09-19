@@ -18,14 +18,14 @@ function App() {
   return (
     <div className="flex h-screen flex-col pb-4">
       <Appbar />
-      <div className="flex h-full w-full flex-col items-center px-12 pb-12">
+      <div className="flex h-full w-full flex-col items-center px-12 pb-12 lg:gap-y-10">
         <div className="mb-6 flex w-full flex-col items-center">
           <h1 className="text-2xl font-semibold">Color Converter</h1>
           <p className="text-sm opacity-60">
             Convert between HEX, RGB, and HSL color formats
           </p>
         </div>
-        <div className="flex h-full w-full flex-col gap-y-8 lg:flex-row lg:gap-x-8">
+        <div className="flex h-full w-full max-w-[850px] flex-col gap-y-8 lg:h-fit lg:flex-row lg:gap-x-8">
           <div className="flex w-full flex-col gap-y-8">
             <Input
               value={input}
