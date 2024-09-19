@@ -46,6 +46,7 @@ const config = {
         },
         ring: 'hsl(var(--ring))',
         background: 'hsl(var(--background))',
+        surface: 'hsl(var(--surface))',
         foreground: 'hsl(var(--foreground))',
         primary: {
           DEFAULT: 'hsl(var(--primary))',

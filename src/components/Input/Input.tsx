@@ -9,7 +9,7 @@ export default function Input({ className, ...props }: InputProps) {
   return (
     <input
       className={cn(
-        'rounded-md border px-3 py-2 text-base text-input-foreground placeholder:text-muted-foreground',
+        'bg-surface rounded-md border px-3 py-2 text-base placeholder:text-muted-foreground',
         className
       )}
       {...props}
