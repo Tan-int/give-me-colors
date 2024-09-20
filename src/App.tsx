@@ -1,18 +1,18 @@
-import { colorPicker } from '@/lib/services/colorPicker';
 import ColorInfoContainer from '@components/ColorInfoContainer';
 import { INITIAL_COLOR_CODE } from '@/lib/utils/constants';
 import Appbar from '@components/Appbar';
 import Input from '@components/Input';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent } from 'react';
 import ColorInfo from './components/ColorInfo';
+import useColorConverter from './hooks/useColorConverter';
 
 function App() {
-  const [input, setInput] = useState<string>(INITIAL_COLOR_CODE);
-  const color = colorPicker(input);
+  const { colorCode, rgb, hex, hsl, updateColorCode } =
+    useColorConverter(INITIAL_COLOR_CODE);
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const input = event.target.value;
-    setInput(input);
+    updateColorCode(input);
   };
 
   return (
@@ -28,21 +28,21 @@ function App() {
         <div className="flex h-full w-full flex-col gap-y-8 md:h-fit md:flex-row md:gap-x-8">
           <div className="flex w-full flex-col gap-y-8">
             <Input
-              value={input}
+              value={colorCode}
               onChange={handleInputChange}
               className="text-base"
             />
             <ColorInfoContainer>
-              <ColorInfo colorModel="HEX" colorCode={color.hex} />
+              <ColorInfo colorModel="HEX" colorCode={hex} />
               <hr />
-              <ColorInfo colorModel="HSL" colorCode={color.hsl} />
+              <ColorInfo colorModel="RGB" colorCode={rgb} />
               <hr />
-              <ColorInfo colorModel="RGB" colorCode={color.rgb} />
+              <ColorInfo colorModel="HSL" colorCode={hsl} />
             </ColorInfoContainer>
           </div>
           <div
             className="size-full min-h-[200px]"
-            style={{ background: color.hex }}
+            style={{ background: hex }}
           ></div>
         </div>
       </div>
