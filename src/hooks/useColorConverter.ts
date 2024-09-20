@@ -10,7 +10,7 @@ const getRgbValues = (colorCode: string) => {
     .replace(/^#/, '')
     .match(/^([0-9A-Fa-f]{3}|[0-9A-Fa-f]{5}|[0-9A-Fa-f]{6})$/);
 
-  const hslMatch = colorCode.replace(/[^\d,]/g, '').split(',');
+  const hslMatch = colorCode.replace(/[^\d.,]/g, '').split(',');
 
   if (
     rgbMatch &&

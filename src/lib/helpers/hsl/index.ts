@@ -72,8 +72,7 @@ const getAdjustedHue = (hue: string) => {
 };
 
 const getAdjustedSaturation = (saturation: string) => {
-  let parsedSaturation = parseInt(saturation);
-
+  let parsedSaturation = parseFloat(saturation);
   if (parsedSaturation > MAXIMUM_SATURATION_VALUE)
     parsedSaturation = MAXIMUM_SATURATION_VALUE;
 
@@ -85,7 +84,7 @@ const getAdjustedSaturation = (saturation: string) => {
 };
 
 const getAdjustedLightness = (lightness: string) => {
-  let parsedLightness = parseInt(lightness);
+  let parsedLightness = parseFloat(lightness);
 
   if (parsedLightness > MAXIMUM_LIGHTNESS_VALUE)
     parsedLightness = MAXIMUM_LIGHTNESS_VALUE;
