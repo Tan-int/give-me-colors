@@ -13,7 +13,7 @@ export default function ColorInfo({
   colorCode,
 }: ColorInfoProps) {
   return (
-    <div className={cn('flex flex-col gap-y-1 p-2', className)}>
+    <div className={cn('flex flex-col p-2', className)}>
       <h6 className="text-sm">{colorModel}</h6>
       <div className="flex flex-col gap-y-1">
         <ColorCode colorCode={colorCode} />
