@@ -10,7 +10,7 @@ export default function ColorInfoContainer({
   children,
 }: ColorInfoContainerProps) {
   return (
-    <div className={cn('flex w-full flex-col gap-y-3 border p-4', className)}>
+    <div className={cn('flex w-full flex-col gap-y-1 border', className)}>
       {children}
     </div>
   );
