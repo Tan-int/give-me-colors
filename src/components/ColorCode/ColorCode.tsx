@@ -17,12 +17,12 @@ export default function ColorCode({ colorCode }: ColorCodeProps) {
   };
 
   return (
-    <div
-      className="flex w-full flex-row items-center justify-between px-2 py-1"
-      onClick={copyToClipboard}
-    >
+    <div className="flex w-full flex-row items-center justify-between px-2 py-1">
       <p className="text-sm opacity-90">{colorCode}</p>
-      <div className="rounded-md p-2 hover:cursor-pointer hover:bg-surface">
+      <div
+        className="rounded-md p-2 hover:cursor-pointer hover:bg-surface"
+        onClick={copyToClipboard}
+      >
         {isCopied ? (
           <ClipboardCheck className="h-4 w-4" />
         ) : (
