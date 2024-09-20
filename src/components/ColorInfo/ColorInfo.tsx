@@ -1,5 +1,5 @@
 import { cn } from '@/lib/utils/cn';
-import { Copy } from 'lucide-react';
+import ColorCode from '@components/ColorCode';
 
 type ColorInfoProps = {
   className?: string | undefined;
@@ -16,10 +16,7 @@ export default function ColorInfo({
     <div className={cn('flex flex-col gap-y-1 p-2', className)}>
       <h6 className="text-sm">{colorModel}</h6>
       <div className="flex flex-col gap-y-1">
-        <div className="flex w-full flex-row items-center justify-between">
-          <p className="text-sm opacity-90">{colorCode}</p>
-          <Copy className="h-4 w-4" />
-        </div>
+        <ColorCode colorCode={colorCode} />
       </div>
     </div>
   );
