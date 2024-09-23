@@ -1,5 +1,6 @@
 import { MAX_RGB_VALUE, MINIMUM_RGB_VALUE } from '@/lib/utils/constants';
-import { rgbToHsl } from '@/lib/helpers/hsl';
+import { getRgbFromHsl, rgbToHsl } from '@/lib/helpers/hsl';
+import { getRgbFromHexCode } from '@/lib/helpers/hex';
 
 export const getRgbCodeFromRgbString = (colorChannels: string[]) => {
   const [r, g, b = 0] = colorChannels.map(colorChannel => {
@@ -16,6 +17,34 @@ export const getRgbCodeFromRgbString = (colorChannels: string[]) => {
   const [h, s, l] = rgbToHsl(r, g, b);
 
   return [r, g, b, h, s, l];
+};
+
+export const getRgbValues = (colorCode: string) => {
+  const rgbMatch = colorCode.replace(/[^\d,]/g, '').split(',');
+
+  const hexMatch = colorCode
+    .replace(/^#/, '')
+    .match(/^([0-9A-Fa-f]{3}|[0-9A-Fa-f]{5}|[0-9A-Fa-f]{6})$/);
+
+  const hslMatch = colorCode.replace(/[^\d.,]/g, '').split(',');
+
+  if (
+    rgbMatch &&
+    rgbMatch.length === 3 &&
+    colorCode.toLowerCase().startsWith('rgb')
+  ) {
+    return getRgbCodeFromRgbString(rgbMatch);
+  }
+
+  if (hslMatch && colorCode.toLowerCase().startsWith('hsl')) {
+    return getRgbFromHsl(hslMatch);
+  }
+
+  if (hexMatch) {
+    return getRgbFromHexCode(hexMatch);
+  }
+
+  return [undefined];
 };
 
 export const toRgbString = (r: number, g: number, b: number) => {
