@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { getRgbFromHexCode, toHexString } from '@/lib/helpers/hex';
-import {
-  getRgbFromHsl,
-  hslToRgb,
-  rgbToHsl,
-  toHslString,
-} from '@/lib/helpers/hsl';
+import { getRgbFromHsl, hslToRgb, toHslString } from '@/lib/helpers/hsl';
 import { getRgbCodeFromRgbString, toRgbString } from '@/lib/helpers/rgb';
 import Color from '@/types/color';
+import {
+  LIGHTNESS_SCALE,
+  LIGHTNESS_THRESHOLD,
+  MAXIMUM_LIGHTNESS_VALUE,
+  MINIMUM_LIGHTNESS_VALUE,
+} from '@/lib/utils/constants';
 
 const getRgbValues = (colorCode: string) => {
   const rgbMatch = colorCode.replace(/[^\d,]/g, '').split(',');
@@ -64,9 +65,11 @@ export default function useColorConverter(colorCode: string) {
   const { red, green, blue, hue, saturation, lightness } = color;
 
   const lighten = () => {
-    const [h, s, l] = rgbToHsl(red, green, blue);
-    const increasedLightness = Math.min(1, l * 1.1);
-    const [r, g, b] = hslToRgb(h * 360, s * 100, increasedLightness * 100);
+    const increasedLightness =
+      lightness === MINIMUM_LIGHTNESS_VALUE
+        ? LIGHTNESS_THRESHOLD
+        : Math.min(MAXIMUM_LIGHTNESS_VALUE, lightness * LIGHTNESS_SCALE);
+    const [r, g, b] = hslToRgb(hue, saturation, increasedLightness);
 
     setColor({
       ...color,
@@ -77,10 +80,28 @@ export default function useColorConverter(colorCode: string) {
     });
   };
 
+  const darken = () => {
+    const decreasedLightness =
+      lightness <= LIGHTNESS_THRESHOLD
+        ? MINIMUM_LIGHTNESS_VALUE
+        : Math.max(MINIMUM_LIGHTNESS_VALUE, lightness / LIGHTNESS_SCALE);
+
+    const [r, g, b] = hslToRgb(hue, saturation, decreasedLightness);
+
+    setColor({
+      ...color,
+      red: r,
+      green: g,
+      blue: b,
+      lightness: decreasedLightness,
+    });
+  };
+
   return {
     rgb: toRgbString(red, green, blue),
     hex: toHexString(red, green, blue),
     hsl: toHslString(hue, saturation, lightness),
     lighten,
+    darken,
   };
 }

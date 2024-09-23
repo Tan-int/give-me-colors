@@ -1,5 +1,5 @@
 import { HEX_NUMBER_FORMAT } from '@/lib/utils/constants';
-import { rgbToHsl } from '../hsl';
+import { rgbToHsl } from '@/lib/helpers/hsl';
 
 export const getRgbFromHexCode = (hexMatch: string[]) => {
   let r = 0,

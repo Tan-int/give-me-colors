@@ -1,5 +1,5 @@
 import { MAX_RGB_VALUE, MINIMUM_RGB_VALUE } from '@/lib/utils/constants';
-import { rgbToHsl } from '../hsl';
+import { rgbToHsl } from '@/lib/helpers/hsl';
 
 export const getRgbCodeFromRgbString = (colorChannels: string[]) => {
   const [r, g, b = 0] = colorChannels.map(colorChannel => {

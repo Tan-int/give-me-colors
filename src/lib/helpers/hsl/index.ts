@@ -13,8 +13,9 @@ export const getRgbFromHsl = (colorChannels: string[]) => {
   const hue = parseInt(h);
   const saturation = parseInt(s);
   const lightness = parseInt(l);
+  const [r, g, b] = hslToRgb(hue, saturation, lightness);
 
-  return hslToRgb(hue, saturation, lightness);
+  return [r, g, b, hue, saturation, lightness];
 };
 
 const { min, max, round } = Math;
@@ -33,7 +34,6 @@ const { min, max, round } = Math;
 
 export function hslToRgb(h: number, s: number, l: number) {
   let r: number, g: number, b: number;
-
   const hue = getAdjustedHue(h);
   const saturation = getAdjustedSaturation(s);
   const lightness = getAdjustedLightness(l);
@@ -104,12 +104,15 @@ const getAdjustedLightness = (lightness: number) => {
  * @return  {Array}           The HSL representation
  */
 
-export function toHslString(h: number, s: number, l: number) {
-  const hue = round(h * 360); // h is in [0, 1] set, convert this to 0-360 range
-  const saturation = round(s * 100); // s is in [0, 1] set, convert to percentage
-  const lightness = round(l * 100); // l is in [0, 1] set, convert to percentage
-
-  return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+export function toHslString(
+  hue: number,
+  saturation: number,
+  lightness: number
+) {
+  const roundedHue = round(hue);
+  const roundedSaturation = round(saturation);
+  const roundedLightness = round(lightness);
+  return `hsl(${roundedHue}, ${roundedSaturation}%, ${roundedLightness}%)`;
 }
 
 // returns hsl in the [0, 360], [0,1], [0,1] set
@@ -133,5 +136,9 @@ export function rgbToHsl(r: number, g: number, b: number) {
     h /= 6;
   }
 
-  return [h, s, l];
+  const hue = h * 360; // h is in [0, 1] set, convert this to 0-360 range
+  const saturation = s * 100; // s is in [0, 1] set, convert to percentage
+  const lightness = l * 100; // l is in [0, 1] set, convert to percentage
+
+  return [hue, saturation, lightness];
 }
