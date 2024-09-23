@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { getRgbFromHexCode, toHexString } from '@/lib/helpers/hex';
 import { getRgbFromHsl, toHslString } from '@/lib/helpers/hsl';
 import { getRgbCodeFromRgbString, toRgbString } from '@/lib/helpers/rgb';
+import Color from '@/types/color';
 
 const getRgbValues = (colorCode: string) => {
   const rgbMatch = colorCode.replace(/[^\d,]/g, '').split(',');
@@ -31,31 +32,29 @@ const getRgbValues = (colorCode: string) => {
   return [undefined];
 };
 
-export default function useColorConverter(initialColorCode: string) {
-  const [colorCode, setColorCode] = useState<string>(initialColorCode);
-  const [rgb, setRgb] = useState('');
-  const [hex, setHex] = useState('');
-  const [hsl, setHsl] = useState('');
+export default function useColorConverter(colorCode: string) {
+  const [r = 0, g = 0, b = 0] = getRgbValues(colorCode);
+  const [color, setColor] = useState<Color>({
+    red: r,
+    green: g,
+    blue: b,
+    colorCode: colorCode,
+  });
 
-  useEffect(() => {
-    const [r, g, b] = getRgbValues(colorCode);
+  if (r && g && b && colorCode !== color.colorCode) {
+    setColor({
+      red: r,
+      green: g,
+      blue: b,
+      colorCode: colorCode,
+    });
+  }
 
-    if (r !== undefined && g !== undefined && b !== undefined) {
-      setHex(toHexString(r, g, b));
-      setRgb(toRgbString(r, g, b));
-      setHsl(toHslString(r, g, b));
-    }
-  }, [colorCode]);
-
-  const updateColorCode = (newColorCode: string) => {
-    setColorCode(newColorCode);
-  };
+  const { red, green, blue } = color;
 
   return {
-    colorCode,
-    rgb,
-    hex,
-    hsl,
-    updateColorCode,
+    rgb: toRgbString(red, green, blue),
+    hex: toHexString(red, green, blue),
+    hsl: toHslString(red, green, blue),
   };
 }

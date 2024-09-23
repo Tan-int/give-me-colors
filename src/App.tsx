@@ -2,17 +2,17 @@ import ColorInfoContainer from '@components/ColorInfoContainer';
 import { INITIAL_COLOR_CODE } from '@/lib/utils/constants';
 import Appbar from '@components/Appbar';
 import Input from '@components/Input';
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useState } from 'react';
 import ColorInfo from './components/ColorInfo';
 import useColorConverter from './hooks/useColorConverter';
 
 function App() {
-  const { colorCode, rgb, hex, hsl, updateColorCode } =
-    useColorConverter(INITIAL_COLOR_CODE);
+  const [input, setInput] = useState<string>(INITIAL_COLOR_CODE);
+  const { rgb, hex, hsl } = useColorConverter(input);
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const input = event.target.value;
-    updateColorCode(input);
+    setInput(input);
   };
 
   return (
@@ -28,7 +28,7 @@ function App() {
         <div className="flex h-full w-full flex-col gap-y-8 md:h-fit md:flex-row md:gap-x-8">
           <div className="flex w-full flex-col gap-y-8">
             <Input
-              value={colorCode}
+              value={input}
               onChange={handleInputChange}
               className="text-base"
             />
