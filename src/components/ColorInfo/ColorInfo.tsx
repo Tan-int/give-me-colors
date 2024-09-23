@@ -1,5 +1,5 @@
 import { cn } from '@/lib/utils/cn';
-import ColorCode from '@components/ColorCode';
+import ColorCode from '@/components/ColorCode';
 
 type ColorInfoProps = {
   className?: string | undefined;

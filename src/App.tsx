@@ -1,10 +1,10 @@
-import ColorInfoContainer from '@components/ColorInfoContainer';
+import ColorInfoContainer from '@/components/ColorInfoContainer';
 import { INITIAL_COLOR_CODE } from '@/lib/utils/constants';
-import Appbar from '@components/Appbar';
-import Input from '@components/Input';
+import Appbar from '@/components/Appbar';
+import Input from '@/components/Input';
 import { ChangeEvent, useState } from 'react';
-import ColorInfo from './components/ColorInfo';
-import useColorConverter from './hooks/useColorConverter';
+import ColorInfo from '@/components/ColorInfo';
+import useColorConverter from '@/hooks/useColorConverter';
 
 function App() {
   const [input, setInput] = useState<string>(INITIAL_COLOR_CODE);
