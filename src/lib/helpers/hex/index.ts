@@ -1,4 +1,5 @@
 import { HEX_NUMBER_FORMAT } from '@/lib/utils/constants';
+import { rgbToHsl } from '../hsl';
 
 export const getRgbFromHexCode = (hexMatch: string[]) => {
   let r = 0,
@@ -27,7 +28,9 @@ export const getRgbFromHexCode = (hexMatch: string[]) => {
     });
   }
 
-  return [r, g, b];
+  const [h, s, l] = rgbToHsl(r, g, b);
+
+  return [r, g, b, h, s, l];
 };
 
 export const toHexString = (r: number, g: number, b: number) => {

@@ -8,7 +8,7 @@ import useColorConverter from '@/hooks/useColorConverter';
 
 function App() {
   const [input, setInput] = useState<string>(INITIAL_COLOR_CODE);
-  const { rgb, hex, hsl } = useColorConverter(input);
+  const { rgb, hex, hsl, lighten } = useColorConverter(input);
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const input = event.target.value;
@@ -24,6 +24,7 @@ function App() {
           <p className="text-sm opacity-60">
             Convert between HEX, RGB, and HSL color formats
           </p>
+          <button onClick={lighten}>lighten</button>
         </div>
         <div className="flex h-full w-full flex-col gap-y-8 md:h-fit md:flex-row md:gap-x-8">
           <div className="flex w-full flex-col gap-y-8">

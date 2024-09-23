@@ -1,6 +1,11 @@
 import { useState } from 'react';
 import { getRgbFromHexCode, toHexString } from '@/lib/helpers/hex';
-import { getRgbFromHsl, toHslString } from '@/lib/helpers/hsl';
+import {
+  getRgbFromHsl,
+  hslToRgb,
+  rgbToHsl,
+  toHslString,
+} from '@/lib/helpers/hsl';
 import { getRgbCodeFromRgbString, toRgbString } from '@/lib/helpers/rgb';
 import Color from '@/types/color';
 
@@ -33,11 +38,14 @@ const getRgbValues = (colorCode: string) => {
 };
 
 export default function useColorConverter(colorCode: string) {
-  const [r = 0, g = 0, b = 0] = getRgbValues(colorCode);
+  const [r = 0, g = 0, b = 0, h = 0, s = 0, l = 0] = getRgbValues(colorCode);
   const [color, setColor] = useState<Color>({
     red: r,
     green: g,
     blue: b,
+    hue: h,
+    saturation: s,
+    lightness: l,
     colorCode: colorCode,
   });
 
@@ -46,15 +54,33 @@ export default function useColorConverter(colorCode: string) {
       red: r,
       green: g,
       blue: b,
+      hue: h,
+      saturation: s,
+      lightness: l,
       colorCode: colorCode,
     });
   }
 
-  const { red, green, blue } = color;
+  const { red, green, blue, hue, saturation, lightness } = color;
+
+  const lighten = () => {
+    const [h, s, l] = rgbToHsl(red, green, blue);
+    const increasedLightness = Math.min(1, l * 1.1);
+    const [r, g, b] = hslToRgb(h * 360, s * 100, increasedLightness * 100);
+
+    setColor({
+      ...color,
+      red: r,
+      green: g,
+      blue: b,
+      lightness: increasedLightness,
+    });
+  };
 
   return {
     rgb: toRgbString(red, green, blue),
     hex: toHexString(red, green, blue),
-    hsl: toHslString(red, green, blue),
+    hsl: toHslString(hue, saturation, lightness),
+    lighten,
   };
 }

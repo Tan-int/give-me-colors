@@ -1,4 +1,5 @@
 import { MAX_RGB_VALUE, MINIMUM_RGB_VALUE } from '@/lib/utils/constants';
+import { rgbToHsl } from '../hsl';
 
 export const getRgbCodeFromRgbString = (colorChannels: string[]) => {
   const [r, g, b = 0] = colorChannels.map(colorChannel => {
@@ -12,7 +13,9 @@ export const getRgbCodeFromRgbString = (colorChannels: string[]) => {
     return parsedColorChannel;
   });
 
-  return [r, g, b];
+  const [h, s, l] = rgbToHsl(r, g, b);
+
+  return [r, g, b, h, s, l];
 };
 
 export const toRgbString = (r: number, g: number, b: number) => {

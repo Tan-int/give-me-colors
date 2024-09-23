@@ -7,10 +7,13 @@ import {
   MINIMUM_SATURATION_VALUE,
 } from '@/lib/utils/constants';
 
-//TODO: Handle decimal inputs
-
 export const getRgbFromHsl = (colorChannels: string[]) => {
-  const [hue, saturation, lightness] = colorChannels;
+  const [h, s, l] = colorChannels;
+
+  const hue = parseInt(h);
+  const saturation = parseInt(s);
+  const lightness = parseInt(l);
+
   return hslToRgb(hue, saturation, lightness);
 };
 
@@ -28,7 +31,7 @@ const { min, max, round } = Math;
  * @return  {Array}           The RGB representation
  */
 
-function hslToRgb(h: string, s: string, l: string) {
+export function hslToRgb(h: number, s: number, l: number) {
   let r: number, g: number, b: number;
 
   const hue = getAdjustedHue(h);
@@ -60,40 +63,33 @@ function hueToRgb(p: number, q: number, t: number) {
   return p;
 }
 
-const getAdjustedHue = (hue: string) => {
-  let parsedHue = parseInt(hue);
+const getAdjustedHue = (hue: number) => {
+  if (hue > MAX_HUE_VALUE) hue = MAX_HUE_VALUE;
 
-  if (parsedHue > MAX_HUE_VALUE) parsedHue = MAX_HUE_VALUE;
-
-  if (parsedHue < MINIMUM_HUE_VALUE) parsedHue = MINIMUM_HUE_VALUE;
+  if (hue < MINIMUM_HUE_VALUE) hue = MINIMUM_HUE_VALUE;
 
   // range of hue is 0-360, hsl to rgb function expects hue to be in the [0, 1] set
-  return parsedHue / MAX_HUE_VALUE;
+  return hue / MAX_HUE_VALUE;
 };
 
-const getAdjustedSaturation = (saturation: string) => {
-  let parsedSaturation = parseFloat(saturation);
-  if (parsedSaturation > MAXIMUM_SATURATION_VALUE)
-    parsedSaturation = MAXIMUM_SATURATION_VALUE;
+const getAdjustedSaturation = (saturation: number) => {
+  if (saturation > MAXIMUM_SATURATION_VALUE)
+    saturation = MAXIMUM_SATURATION_VALUE;
 
-  if (parsedSaturation < MINIMUM_SATURATION_VALUE)
-    parsedSaturation = MINIMUM_SATURATION_VALUE;
+  if (saturation < MINIMUM_SATURATION_VALUE)
+    saturation = MINIMUM_SATURATION_VALUE;
 
   // range of saturation is 0-100, hsl to rgb function expects saturation to be in the [0, 1] set
-  return parsedSaturation / MAXIMUM_SATURATION_VALUE;
+  return saturation / MAXIMUM_SATURATION_VALUE;
 };
 
-const getAdjustedLightness = (lightness: string) => {
-  let parsedLightness = parseFloat(lightness);
+const getAdjustedLightness = (lightness: number) => {
+  if (lightness > MAXIMUM_LIGHTNESS_VALUE) lightness = MAXIMUM_LIGHTNESS_VALUE;
 
-  if (parsedLightness > MAXIMUM_LIGHTNESS_VALUE)
-    parsedLightness = MAXIMUM_LIGHTNESS_VALUE;
-
-  if (parsedLightness < MINIMUM_LIGHTNESS_VALUE)
-    parsedLightness = MINIMUM_LIGHTNESS_VALUE;
+  if (lightness < MINIMUM_LIGHTNESS_VALUE) lightness = MINIMUM_LIGHTNESS_VALUE;
 
   // range of saturation is 0-100, hsl to rgb function expects saturation to be in the [0, 1] set
-  return parsedLightness / MAXIMUM_LIGHTNESS_VALUE;
+  return lightness / MAXIMUM_LIGHTNESS_VALUE;
 };
 
 /**
@@ -108,7 +104,16 @@ const getAdjustedLightness = (lightness: string) => {
  * @return  {Array}           The HSL representation
  */
 
-export function toHslString(r: number, g: number, b: number) {
+export function toHslString(h: number, s: number, l: number) {
+  const hue = round(h * 360); // h is in [0, 1] set, convert this to 0-360 range
+  const saturation = round(s * 100); // s is in [0, 1] set, convert to percentage
+  const lightness = round(l * 100); // l is in [0, 1] set, convert to percentage
+
+  return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+}
+
+// returns hsl in the [0, 360], [0,1], [0,1] set
+export function rgbToHsl(r: number, g: number, b: number) {
   const red = r / 255;
   const green = g / 255;
   const blue = b / 255;
@@ -128,9 +133,5 @@ export function toHslString(r: number, g: number, b: number) {
     h /= 6;
   }
 
-  const hue = round(h * 360); // h is in [0, 1] set, convert this to 0-360 range
-  const saturation = round(s * 100); // s is in [0, 1] set, convert to percentage
-  const lightness = round(l * 100); // l is in [0, 1] set, convert to percentage
-
-  return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+  return [h, s, l];
 }
