@@ -1,14 +1,15 @@
-import ColorInfoContainer from '@/components/ColorInfoContainer';
-import { INITIAL_COLOR_CODE } from '@/lib/utils/constants';
 import Appbar from '@/components/Appbar';
-import Input from '@/components/Input';
-import { ChangeEvent, useState } from 'react';
 import ColorInfo from '@/components/ColorInfo';
+import ColorInfoContainer from '@/components/ColorInfoContainer';
+import Input from '@/components/Input';
 import useColorConverter from '@/hooks/useColorConverter';
+import { INITIAL_COLOR_CODE } from '@/lib/utils/constants';
+import { ChangeEvent, useState } from 'react';
+import InputStepper from '@/components/InputStepper';
 
 function App() {
   const [input, setInput] = useState<string>(INITIAL_COLOR_CODE);
-  const { rgb, hex, hsl } = useColorConverter(input);
+  const { rgb, hex, hsl, lighten, darken } = useColorConverter(input);
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const input = event.target.value;
@@ -41,9 +42,16 @@ function App() {
             </ColorInfoContainer>
           </div>
           <div
-            className="size-full min-h-[200px]"
+            className="relative size-full min-h-[200px]"
             style={{ background: hex }}
-          ></div>
+          >
+            <InputStepper
+              className="absolute bottom-3 left-3"
+              label="Brightness"
+              onIncrease={lighten}
+              onDecrease={darken}
+            />
+          </div>
         </div>
       </div>
     </div>
