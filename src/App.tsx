@@ -9,7 +9,8 @@ import InputStepper from '@/components/InputStepper';
 
 function App() {
   const [input, setInput] = useState<string>(INITIAL_COLOR_CODE);
-  const { rgb, hex, hsl, lighten, darken } = useColorConverter(input);
+  const { rgb, hex, hsl, lighten, darken, saturate, desaturate } =
+    useColorConverter(input);
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const input = event.target.value;
@@ -50,6 +51,12 @@ function App() {
               label="Brightness"
               onIncrease={lighten}
               onDecrease={darken}
+            />
+            <InputStepper
+              className="absolute bottom-3 right-3"
+              label="Saturation"
+              onIncrease={saturate}
+              onDecrease={desaturate}
             />
           </div>
         </div>
