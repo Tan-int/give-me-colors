@@ -6,6 +6,7 @@ import useColorConverter from '@/hooks/useColorConverter';
 import { INITIAL_COLOR_CODE } from '@/lib/utils/constants';
 import { ChangeEvent, useState } from 'react';
 import InputStepper from '@/components/InputStepper';
+import { Droplet, SunDim } from 'lucide-react';
 
 function App() {
   const [input, setInput] = useState<string>(INITIAL_COLOR_CODE);
@@ -46,18 +47,14 @@ function App() {
             className="relative size-full min-h-[200px]"
             style={{ background: hex }}
           >
-            <InputStepper
-              className="absolute bottom-3 left-3"
-              label="Brightness"
-              onIncrease={lighten}
-              onDecrease={darken}
-            />
-            <InputStepper
-              className="absolute bottom-3 right-3"
-              label="Saturation"
-              onIncrease={saturate}
-              onDecrease={desaturate}
-            />
+            <div className="absolute bottom-2 right-2 flex flex-row gap-x-2">
+              <InputStepper onIncrease={lighten} onDecrease={darken}>
+                <SunDim className="h-4 w-4" color="#F6F8F9" />
+              </InputStepper>
+              <InputStepper onIncrease={saturate} onDecrease={desaturate}>
+                <Droplet className="h-4 w-4" color="#F6F8F9" />
+              </InputStepper>
+            </div>
           </div>
         </div>
       </div>
