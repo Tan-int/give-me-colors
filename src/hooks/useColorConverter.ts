@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { toHexString } from '@/lib/helpers/hex';
 import { hslToRgb, toHslString } from '@/lib/helpers/hsl';
 import { getRgbValues, toRgbString } from '@/lib/helpers/rgb';
@@ -40,6 +40,19 @@ export default function useColorConverter(colorCode: string) {
 
   const { red, green, blue, hue, saturation, lightness } = color;
 
+  const onLightnessRangeChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const newLightness = event.target.valueAsNumber;
+    const [r, g, b] = hslToRgb(hue, saturation, newLightness);
+
+    setColor({
+      ...color,
+      red: r,
+      green: g,
+      blue: b,
+      lightness: newLightness,
+    });
+  };
+
   const lighten = () => {
     const increasedLightness =
       lightness === MINIMUM_LIGHTNESS_VALUE
@@ -71,6 +84,19 @@ export default function useColorConverter(colorCode: string) {
       green: g,
       blue: b,
       lightness: decreasedLightness,
+    });
+  };
+
+  const onSaturationRangeChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const newSaturation = event.target.valueAsNumber;
+    const [r, g, b] = hslToRgb(hue, newSaturation, lightness);
+
+    setColor({
+      ...color,
+      red: r,
+      green: g,
+      blue: b,
+      saturation: newSaturation,
     });
   };
 
@@ -112,6 +138,10 @@ export default function useColorConverter(colorCode: string) {
     rgb: toRgbString(red, green, blue),
     hex: toHexString(red, green, blue),
     hsl: toHslString(hue, saturation, lightness),
+    saturation: saturation,
+    lightness: lightness,
+    onLightnessRangeChange,
+    onSaturationRangeChange,
     lighten,
     darken,
     saturate,

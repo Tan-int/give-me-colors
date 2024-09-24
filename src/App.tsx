@@ -3,15 +3,32 @@ import ColorInfo from '@/components/ColorInfo';
 import ColorInfoContainer from '@/components/ColorInfoContainer';
 import Input from '@/components/Input';
 import useColorConverter from '@/hooks/useColorConverter';
-import { INITIAL_COLOR_CODE } from '@/lib/utils/constants';
+import {
+  INITIAL_COLOR_CODE,
+  MAXIMUM_LIGHTNESS_VALUE,
+  MAXIMUM_SATURATION_VALUE,
+  MINIMUM_LIGHTNESS_VALUE,
+  MINIMUM_SATURATION_VALUE,
+} from '@/lib/utils/constants';
 import { ChangeEvent, useState } from 'react';
-import InputStepper from '@/components/InputStepper';
-import { Droplet, SunDim } from 'lucide-react';
+import InputRange from './components/InputRange';
+import { Droplet, Droplets, Moon, SunDim } from 'lucide-react';
 
 function App() {
   const [input, setInput] = useState<string>(INITIAL_COLOR_CODE);
-  const { rgb, hex, hsl, lighten, darken, saturate, desaturate } =
-    useColorConverter(input);
+  const {
+    rgb,
+    hex,
+    hsl,
+    saturation,
+    lightness,
+    saturate,
+    desaturate,
+    lighten,
+    darken,
+    onLightnessRangeChange,
+    onSaturationRangeChange,
+  } = useColorConverter(input);
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const input = event.target.value;
@@ -47,13 +64,30 @@ function App() {
             className="relative size-full min-h-[200px]"
             style={{ background: hex }}
           >
-            <div className="absolute bottom-2 right-2 flex flex-row gap-x-2">
-              <InputStepper onIncrease={lighten} onDecrease={darken}>
+            <div className="absolute bottom-4 flex w-full flex-row justify-center gap-x-8">
+              <InputRange
+                value={lightness}
+                onChange={onLightnessRangeChange}
+                onIncrease={lighten}
+                onDecrease={darken}
+                min={MINIMUM_LIGHTNESS_VALUE}
+                max={MAXIMUM_LIGHTNESS_VALUE}
+              >
+                <Moon className="h-4 w-4" color="#F6F8F9" />
                 <SunDim className="h-4 w-4" color="#F6F8F9" />
-              </InputStepper>
-              <InputStepper onIncrease={saturate} onDecrease={desaturate}>
+              </InputRange>
+
+              <InputRange
+                value={saturation}
+                onChange={onSaturationRangeChange}
+                onIncrease={saturate}
+                onDecrease={desaturate}
+                min={MINIMUM_SATURATION_VALUE}
+                max={MAXIMUM_SATURATION_VALUE}
+              >
                 <Droplet className="h-4 w-4" color="#F6F8F9" />
-              </InputStepper>
+                <Droplets className="h-4 w-4" color="#F6F8F9" />
+              </InputRange>
             </div>
           </div>
         </div>
