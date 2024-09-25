@@ -13,6 +13,7 @@ import {
 import { ChangeEvent, useState } from 'react';
 import InputRange from '@/components/ChromaSlider';
 import { Droplet, Droplets, Moon, SunDim } from 'lucide-react';
+import ColorSuggestionList from './components/ColorSuggestionList/ColorSuggestionList';
 
 function App() {
   const [input, setInput] = useState<string>(INITIAL_COLOR_CODE);
@@ -91,6 +92,11 @@ function App() {
             </div>
           </div>
         </div>
+        <ColorSuggestionList
+          hexCodes={['white', hex]}
+          numberOfSuggestions={30}
+          itemsToShow={5}
+        />
       </div>
     </div>
   );
