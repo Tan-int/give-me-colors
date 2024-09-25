@@ -16,6 +16,7 @@ import {
 
 export default function useColorConverter(colorCode: string) {
   const [r = 0, g = 0, b = 0, h = 0, s = 0, l = 0] = getRgbValues(colorCode);
+  console.log(r, g, b);
   const [color, setColor] = useState<Color>({
     red: r,
     green: g,
@@ -26,7 +27,12 @@ export default function useColorConverter(colorCode: string) {
     colorCode: colorCode,
   });
 
-  if (r && g && b && colorCode !== color.colorCode) {
+  if (
+    r !== undefined &&
+    g !== undefined &&
+    b !== undefined &&
+    colorCode !== color.colorCode
+  ) {
     setColor({
       red: r,
       green: g,
