@@ -11,7 +11,7 @@ import {
   MINIMUM_SATURATION_VALUE,
 } from '@/lib/utils/constants';
 import { ChangeEvent, useState } from 'react';
-import InputRange from './components/InputRange';
+import InputRange from '@/components/ChromaSlider';
 import { Droplet, Droplets, Moon, SunDim } from 'lucide-react';
 
 function App() {
@@ -61,10 +61,10 @@ function App() {
             </ColorInfoContainer>
           </div>
           <div
-            className="relative size-full min-h-[200px]"
+            className="group relative size-full min-h-[200px]"
             style={{ background: hex }}
           >
-            <div className="slider-container">
+            <div className="slider-container invisible group-hover:visible">
               <InputRange
                 value={lightness}
                 onChange={onLightnessRangeChange}

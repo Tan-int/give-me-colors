@@ -7,7 +7,7 @@ type InputStepperProps = InputHTMLAttributes<HTMLInputElement> & {
   onDecrease: () => void;
 };
 
-export default function InputRange({
+export default function ChromaSlider({
   children,
   onIncrease,
   onDecrease,
