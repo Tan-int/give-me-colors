@@ -1,4 +1,5 @@
 import { InputHTMLAttributes, ReactNode } from 'react';
+import './index.css';
 
 type InputStepperProps = InputHTMLAttributes<HTMLInputElement> & {
   children: [ReactNode, ReactNode];
@@ -14,9 +15,9 @@ export default function InputRange({
 }: InputStepperProps) {
   const [DecreaseIcon, IncreaseIcon] = children;
   return (
-    <div className="flex flex-row items-center gap-x-1 rounded-full bg-black bg-opacity-40 p-2">
+    <div className="input-stepper">
       <button onClick={onDecrease}>{DecreaseIcon}</button>
-      <input className="h-1 w-24 accent-[#F6F8F9]" type="range" {...props} />
+      <input className="input-range accent-[#F6F8F9]" type="range" {...props} />
       <button onClick={onIncrease}>{IncreaseIcon}</button>
     </div>
   );

@@ -65,6 +65,27 @@
     --border: 0, 0%, 30%;
     --ring: 212.7 26.8% 83.9%;
   }
+
+  .slider-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    column-gap: 2rem;
+    position: absolute;
+    bottom: 1rem;
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 1023px) {
+    .slider-container {
+      bottom: 0px;
+      right: 0.5rem;
+      height: 100%;
+      width: fit-content;
+      flex-direction: column;
+      row-gap: 1rem;
+    }
+  }
 }
 
 @layer base {

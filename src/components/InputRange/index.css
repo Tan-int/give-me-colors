@@ -1,0 +1,31 @@
+.input-stepper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  row-gap: 0.5rem;
+  border-radius: 9999px;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 0.5rem;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .input-stepper {
+    row-gap: 0.5rem;
+    column-gap: 0;
+    flex-direction: column-reverse;
+  }
+}
+
+.input-range {
+  height: 0.25rem;
+  width: 6rem;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .input-range {
+    direction: rtl;
+    width: 0.25rem;
+    height: 5rem;
+    writing-mode: vertical-lr;
+  }
+}

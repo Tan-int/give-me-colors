@@ -64,7 +64,7 @@ function App() {
             className="relative size-full min-h-[200px]"
             style={{ background: hex }}
           >
-            <div className="absolute bottom-4 flex w-full flex-row justify-center gap-x-8">
+            <div className="slider-container">
               <InputRange
                 value={lightness}
                 onChange={onLightnessRangeChange}
@@ -73,8 +73,8 @@ function App() {
                 min={MINIMUM_LIGHTNESS_VALUE}
                 max={MAXIMUM_LIGHTNESS_VALUE}
               >
-                <Moon className="h-4 w-4" color="#F6F8F9" />
-                <SunDim className="h-4 w-4" color="#F6F8F9" />
+                <Moon className="h-3 w-3" color="#F6F8F9" />
+                <SunDim className="h-3 w-3" color="#F6F8F9" />
               </InputRange>
 
               <InputRange
@@ -85,8 +85,8 @@ function App() {
                 min={MINIMUM_SATURATION_VALUE}
                 max={MAXIMUM_SATURATION_VALUE}
               >
-                <Droplet className="h-4 w-4" color="#F6F8F9" />
-                <Droplets className="h-4 w-4" color="#F6F8F9" />
+                <Droplet className="h-3 w-3" color="#F6F8F9" />
+                <Droplets className="h-3 w-3" color="#F6F8F9" />
               </InputRange>
             </div>
           </div>
