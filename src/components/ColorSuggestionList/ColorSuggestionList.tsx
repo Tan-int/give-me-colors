@@ -1,5 +1,6 @@
 import { scale } from 'chroma.ts';
 import Carousel from '@/components/Carousel';
+import ColorSuggestion from '@/components/ColorSuggestion/ColorSuggestion';
 
 type ColorSuggestionListProps = {
   hexCodes: string[];
@@ -18,13 +19,7 @@ export default function ColorSuggestionList({
     <div className="flex w-fit flex-row items-center gap-x-4">
       <Carousel itemsToShow={itemsToShow}>
         {colorSuggestions.map(hex => (
-          <div key={hex} className="flex flex-col items-center">
-            <div
-              className="h-6 w-6 rounded-full"
-              style={{ backgroundColor: hex }}
-            ></div>
-            <p className="text-sm">{hex}</p>
-          </div>
+          <ColorSuggestion key={hex} hex={hex} />
         ))}
       </Carousel>
     </div>
