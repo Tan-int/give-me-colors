@@ -48,11 +48,17 @@ function App() {
         </div>
         <div className="flex h-full w-full flex-col gap-y-8 md:h-fit md:flex-row md:gap-x-8">
           <div className="flex w-full flex-col gap-y-8">
-            <Input
-              value={input}
-              onChange={handleInputChange}
-              className="text-base"
-            />
+            <div className="flex flex-row items-center gap-x-4">
+              <Input
+                value={input}
+                onChange={handleInputChange}
+                className="flex-1 text-base"
+              />
+              <div
+                className="h-8 w-8 rounded-full md:hidden"
+                style={{ backgroundColor: hex }}
+              ></div>
+            </div>
             <ColorInfoContainer>
               <ColorInfo colorModel="HEX" colorCode={hex} />
               <hr />
@@ -62,7 +68,7 @@ function App() {
             </ColorInfoContainer>
           </div>
           <div
-            className="group relative size-full min-h-[200px]"
+            className="group relative hidden size-full min-h-[200px] md:block"
             style={{ background: hex }}
           >
             <div className="slider-container invisible group-hover:visible">
@@ -92,11 +98,13 @@ function App() {
             </div>
           </div>
         </div>
-        <ColorSuggestionList
-          hexCodes={['white', hex]}
-          numberOfSuggestions={30}
-          itemsToShow={5}
-        />
+        <div className="flex h-full flex-col items-center border p-4">
+          <ColorSuggestionList
+            hexCodes={['white', hex]}
+            itemsToShow={4}
+            numberOfSuggestions={16}
+          />
+        </div>
       </div>
     </div>
   );
