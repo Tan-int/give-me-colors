@@ -1,5 +1,5 @@
-import { CircleArrowLeft, CircleArrowRight } from 'lucide-react';
-import { ReactNode, useState, Children } from 'react';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { ReactNode, useState, Children, Fragment } from 'react';
 
 type CarouselProps = {
   children: ReactNode;
@@ -24,19 +24,19 @@ export default function Carousel({ children, itemsToShow }: CarouselProps) {
   };
 
   return (
-    <div className="flex flex-row items-center gap-x-4">
+    <div className="flex flex-row items-center">
       <button onClick={previousSlide}>
-        <CircleArrowLeft />
+        <ArrowLeft className="h-4 w-4" />
       </button>
-      {childrenArray
-        .slice(currentIndex, currentIndex + itemsToShow)
-        .map((child, index) => (
-          <div key={index} className="flex flex-col items-center">
-            {child}
-          </div>
-        ))}
+      <div className="mx-2 flex flex-row items-center gap-x-1">
+        {childrenArray
+          .slice(currentIndex, currentIndex + itemsToShow)
+          .map((child, index) => (
+            <Fragment key={index}>{child}</Fragment>
+          ))}
+      </div>
       <button onClick={nextSlide}>
-        <CircleArrowRight />
+        <ArrowRight className="h-4 w-4" />
       </button>
     </div>
   );

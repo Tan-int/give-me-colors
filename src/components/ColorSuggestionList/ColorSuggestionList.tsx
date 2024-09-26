@@ -16,12 +16,10 @@ export default function ColorSuggestionList({
   const colorSuggestions = scale(hexCodes).colors(numberOfSuggestions);
 
   return (
-    <div className="flex w-fit flex-row items-center gap-x-4">
-      <Carousel itemsToShow={itemsToShow}>
-        {colorSuggestions.map(hex => (
-          <ColorSuggestion key={hex} hex={hex} />
-        ))}
-      </Carousel>
-    </div>
+    <Carousel itemsToShow={itemsToShow}>
+      {colorSuggestions.map(hex => (
+        <ColorSuggestion key={hex} hex={hex} />
+      ))}
+    </Carousel>
   );
 }
