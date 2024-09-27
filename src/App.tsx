@@ -13,7 +13,7 @@ import {
 import { ChangeEvent, useState } from 'react';
 import InputRange from '@/components/ChromaSlider';
 import { Droplet, Droplets, Moon, SunDim } from 'lucide-react';
-import ColorSuggestionList from './components/ColorSuggestionList/ColorSuggestionList';
+import ColorSuggestionSection from '@/components/ColorSuggestionSection';
 
 function App() {
   const [input, setInput] = useState<string>(INITIAL_COLOR_CODE);
@@ -97,13 +97,7 @@ function App() {
               </InputRange>
             </div>
           </div>
-        </div>
-        <div className="flex h-full flex-col items-center border p-4">
-          <ColorSuggestionList
-            hexCodes={['white', hex]}
-            itemsToShow={4}
-            numberOfSuggestions={16}
-          />
+          <ColorSuggestionSection color={hex} />
         </div>
       </div>
     </div>

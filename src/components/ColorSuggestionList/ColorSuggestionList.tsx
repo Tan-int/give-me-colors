@@ -1,24 +1,17 @@
-import { scale } from 'chroma.ts';
 import Carousel from '@/components/Carousel';
 import ColorSuggestion from '@/components/ColorSuggestion/ColorSuggestion';
 
 type ColorSuggestionListProps = {
-  hexCodes: string[];
-  itemsToShow: number;
-  numberOfSuggestions: number;
+  colorCodes: string[];
 };
 
 export default function ColorSuggestionList({
-  hexCodes,
-  itemsToShow,
-  numberOfSuggestions,
+  colorCodes,
 }: ColorSuggestionListProps) {
-  const colorSuggestions = scale(hexCodes).colors(numberOfSuggestions);
-
   return (
-    <Carousel itemsToShow={itemsToShow}>
-      {colorSuggestions.map(hex => (
-        <ColorSuggestion key={hex} hex={hex} />
+    <Carousel itemsToShow={4}>
+      {colorCodes.map(color => (
+        <ColorSuggestion key={color} hex={color} />
       ))}
     </Carousel>
   );
