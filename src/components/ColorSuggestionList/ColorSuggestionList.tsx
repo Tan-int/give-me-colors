@@ -1,4 +1,3 @@
-import Carousel from '@/components/Carousel';
 import ColorSuggestion from '@/components/ColorSuggestion/ColorSuggestion';
 
 type ColorSuggestionListProps = {
@@ -9,10 +8,10 @@ export default function ColorSuggestionList({
   colorCodes,
 }: ColorSuggestionListProps) {
   return (
-    <Carousel itemsToShow={4}>
+    <div className="flex flex-row">
       {colorCodes.map(color => (
         <ColorSuggestion key={color} hex={color} />
       ))}
-    </Carousel>
+    </div>
   );
 }

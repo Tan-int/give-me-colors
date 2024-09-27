@@ -97,7 +97,7 @@ function App() {
               </InputRange>
             </div>
           </div>
-          <ColorSuggestionSection color={hex} />
+          <ColorSuggestionSection colorCode={hex} />
         </div>
       </div>
     </div>
