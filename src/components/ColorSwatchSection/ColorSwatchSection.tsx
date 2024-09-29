@@ -45,7 +45,7 @@ export default function ColorSwatchSection({
   //   .colors(5);
 
   return (
-    <div className="flex h-full w-full flex-col items-center gap-y-4 rounded-3xl">
+    <div className="flex h-full w-full flex-col gap-y-4 rounded-3xl">
       <ColorSwatchListContainer>
         <h6 className="text-sm font-semibold">Lighter Shades</h6>
         <ColorSwatchList colorCodes={lighterShadePalette} />
