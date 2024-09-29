@@ -13,7 +13,7 @@ import {
 import { ChangeEvent, useState } from 'react';
 import InputRange from '@/components/ChromaSlider';
 import { Droplet, Droplets, Moon, SunDim } from 'lucide-react';
-import ColorSuggestionSection from '@/components/ColorSuggestionSection';
+import ColorSwatchSection from '@/components/ColorSwatchSection';
 
 function App() {
   const [input, setInput] = useState<string>(INITIAL_COLOR_CODE);
@@ -97,7 +97,7 @@ function App() {
               </InputRange>
             </div>
           </div>
-          <ColorSuggestionSection colorCode={hex} />
+          <ColorSwatchSection colorCode={hex} />
         </div>
       </div>
     </div>
