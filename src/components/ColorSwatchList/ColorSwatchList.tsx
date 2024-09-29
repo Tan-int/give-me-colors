@@ -6,7 +6,7 @@ type ColorSwatchListProps = {
 
 export default function ColorSwatchList({ colorCodes }: ColorSwatchListProps) {
   return (
-    <div className="flex flex-row gap-x-6">
+    <div className="flex flex-row gap-x-6 md:w-full md:gap-x-1">
       {colorCodes.map(color => (
         <ColorSwatch key={color} hex={color} />
       ))}
