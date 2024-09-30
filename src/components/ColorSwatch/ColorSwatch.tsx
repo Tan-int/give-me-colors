@@ -7,7 +7,7 @@ export default function ColorSwatch({ hex }: ColorSwatchProps) {
 
   return (
     <div
-      className="h-6 w-6 rounded-full md:h-16 md:w-full md:rounded-none lg:h-16 lg:w-full"
+      className="h-6 w-6 rounded-full md:h-16 md:w-full md:rounded-none lg:w-full"
       style={{ backgroundColor: hex }}
     ></div>
   );

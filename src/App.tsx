@@ -45,7 +45,7 @@ function App() {
       <PageLayout className="flex h-full w-full max-w-[1280px] flex-col px-8 pb-8 pt-4">
         <Appbar />
         <Header />
-        <MainSection className="flex size-full flex-col gap-y-8 md:gap-y-4">
+        <MainSection className="flex size-full flex-col gap-y-8 md:gap-y-4 lg:gap-y-12">
           <ColorConversionSection className="flex flex-row gap-x-4">
             <div className="flex w-full flex-col gap-y-8">
               <div className="flex flex-row items-center gap-x-4">
