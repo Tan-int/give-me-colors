@@ -113,7 +113,12 @@ function App() {
                 </p>
               </div>
               <div className="w-full">
-                <Button label="Contribute" />
+                <a
+                  href="https://github.com/Tan-int/give-me-colors"
+                  target="_blank"
+                >
+                  <Button label="Contribute" />
+                </a>
               </div>
             </Card>
             <Card>
