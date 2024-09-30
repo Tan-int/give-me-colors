@@ -12,12 +12,15 @@ import {
 } from '@/lib/utils/constants';
 import { ChangeEvent, useState } from 'react';
 import InputRange from '@/components/ChromaSlider';
-import { Droplet, Droplets, Moon, SunDim } from 'lucide-react';
+import { Droplet, Droplets, Moon, PartyPopper, SunDim } from 'lucide-react';
 import ColorSwatchSection from '@/components/ColorSwatchSection';
 import MainSection from '@/components/Sections/MainSection';
 import Header from '@/components/Header';
 import PageLayout from '@/components/PageLayout';
 import ColorConversionSection from '@/components/Sections/ColorConversionSection';
+import Github from '@/components/GithubIcon';
+import Card from '@/components/Card';
+import Button from '@/components/Button';
 
 function App() {
   const [input, setInput] = useState<string>(INITIAL_COLOR_CODE);
@@ -42,7 +45,7 @@ function App() {
 
   return (
     <div className="flex h-screen flex-col items-center">
-      <PageLayout className="flex h-full w-full max-w-[1280px] flex-col px-8 pb-8 pt-4">
+      <PageLayout className="flex h-full w-full max-w-[1080px] flex-col px-8 pb-8 pt-4">
         <Appbar />
         <Header />
         <MainSection className="flex size-full flex-col gap-y-8 md:gap-y-4 lg:gap-y-12">
@@ -99,6 +102,34 @@ function App() {
             </div>
           </ColorConversionSection>
           <ColorSwatchSection colorCode={hex} />
+          <div className="flex h-full w-full flex-col gap-y-4 pb-6 pt-3">
+            <Card>
+              <Github />
+              <div className="flex flex-col">
+                <h5 className="font-semibold">Contribute!</h5>
+                <p className="text-sm">
+                  This tool is free and open source. Feel free to contribute!
+                </p>
+              </div>
+              <div className="w-full">
+                <Button label="Contribute" />
+              </div>
+            </Card>
+            <Card>
+              <PartyPopper />
+              <div className="flex flex-col">
+                <h5 className="font-semibold">Ad Free!</h5>
+                <p className="text-sm">
+                  This tool will stay ad free. <br />
+                  Send me a coffee if you're feeling generous!
+                </p>
+              </div>
+
+              <div className="w-full">
+                <Button label="Send Coffee" />
+              </div>
+            </Card>
+          </div>
         </MainSection>
       </PageLayout>
     </div>

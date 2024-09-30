@@ -1,17 +1,17 @@
 import { cn } from '@/lib/utils/cn';
-import { ButtonHTMLAttributes, ReactNode } from 'react';
+import { ButtonHTMLAttributes } from 'react';
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   className?: string | undefined;
-  chldren: ReactNode;
+  label: string;
 };
-export default function Button({ className, children, ...props }: ButtonProps) {
+export default function Button({ className, label, ...props }: ButtonProps) {
   return (
     <button
       className={cn('rounded-md border px-2 py-1 text-sm', className)}
       {...props}
     >
-      {children}
+      {label}
     </button>
   );
 }
