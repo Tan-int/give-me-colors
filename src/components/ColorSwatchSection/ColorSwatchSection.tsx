@@ -13,8 +13,6 @@ export default function ColorSwatchSection({
   const color = chroma.color(colorCode);
   const complementaryColor = color.set('hsl.h', hue => hue + 180);
   const splitComplementary = color.set('hsl.h', hue => hue - 120);
-
-  // const tedtradicContrast = color.set('hsl.h', hue => hue + 90);
   const lighterVersion = color.brighter(2);
   const darkerVersion = color.darker(2);
 
@@ -39,11 +37,6 @@ export default function ColorSwatchSection({
     .scale(color, splitComplementary)
     .mode('lch')
     .colors(NUMBER_OF_COLOR_SWATCHES);
-
-  // const tetradicPalette = chroma
-  //   .scale(color, tedtradicContrast)
-  //   .mode('lch')
-  //   .colors(NUMBER_OF_COLOR_SWATCHES);
 
   return (
     <div className="flex h-full w-full flex-col gap-y-4 rounded-3xl md:gap-y-2 lg:flex-row lg:items-start">
