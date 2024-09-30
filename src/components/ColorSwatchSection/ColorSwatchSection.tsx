@@ -46,7 +46,7 @@ export default function ColorSwatchSection({
   //   .colors(NUMBER_OF_COLOR_SWATCHES);
 
   return (
-    <div className="flex h-full w-full flex-col gap-y-4 rounded-3xl md:gap-y-2">
+    <div className="flex h-full w-full flex-col gap-y-4 rounded-3xl md:gap-y-2 lg:flex-row">
       <ColorSwatchListContainer>
         <ListHeader>Lighter Shades</ListHeader>
         <ColorSwatchList colorCodes={lighterShadePalette} />
@@ -68,5 +68,9 @@ export default function ColorSwatchSection({
 }
 
 function ListHeader({ children }: { children: string }) {
-  return <h6 className="text-sm font-semibold md:text-xs">{children}</h6>;
+  return (
+    <h6 className="text-sm font-semibold md:text-xs lg:text-base">
+      {children}
+    </h6>
+  );
 }
