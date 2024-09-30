@@ -21,6 +21,7 @@ import ColorConversionSection from '@/components/Sections/ColorConversionSection
 import Github from '@/components/GithubIcon';
 import Card from '@/components/Card';
 import Button from '@/components/Button';
+import ContributionSection from '@/components/Sections/ContributionSection';
 
 function App() {
   const [input, setInput] = useState<string>(INITIAL_COLOR_CODE);
@@ -102,7 +103,7 @@ function App() {
             </div>
           </ColorConversionSection>
           <ColorSwatchSection colorCode={hex} />
-          <div className="flex h-full w-full flex-col gap-y-4 pb-6 pt-3">
+          <ContributionSection>
             <Card>
               <Github />
               <div className="flex flex-col">
@@ -120,16 +121,15 @@ function App() {
               <div className="flex flex-col">
                 <h5 className="font-semibold">Ad Free!</h5>
                 <p className="text-sm">
-                  This tool will stay ad free. <br />
-                  Send me a coffee if you're feeling generous!
+                  This tool will stay ad free. Send me a coffee if you're
+                  feeling generous!
                 </p>
               </div>
-
               <div className="w-full">
                 <Button label="Send Coffee" />
               </div>
             </Card>
-          </div>
+          </ContributionSection>
         </MainSection>
       </PageLayout>
     </div>
