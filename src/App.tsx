@@ -14,9 +14,10 @@ import { ChangeEvent, useState } from 'react';
 import InputRange from '@/components/ChromaSlider';
 import { Droplet, Droplets, Moon, SunDim } from 'lucide-react';
 import ColorSwatchSection from '@/components/ColorSwatchSection';
-import MainSection from '@/components/MainSection';
+import MainSection from '@/components/Sections/MainSection';
 import Header from '@/components/Header';
 import PageLayout from '@/components/PageLayout';
+import ColorConversionSection from '@/components/Sections/ColorConversionSection';
 
 function App() {
   const [input, setInput] = useState<string>(INITIAL_COLOR_CODE);
@@ -45,7 +46,7 @@ function App() {
         <Appbar />
         <Header />
         <MainSection className="flex size-full flex-col gap-y-8 md:gap-y-4">
-          <div className="flex flex-row gap-x-4">
+          <ColorConversionSection className="flex flex-row gap-x-4">
             <div className="flex w-full flex-col gap-y-8">
               <div className="flex flex-row items-center gap-x-4">
                 <Input
@@ -96,7 +97,7 @@ function App() {
                 </InputRange>
               </div>
             </div>
-          </div>
+          </ColorConversionSection>
           <ColorSwatchSection colorCode={hex} />
         </MainSection>
       </PageLayout>
