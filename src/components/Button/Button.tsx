@@ -8,7 +8,10 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 export default function Button({ className, label, ...props }: ButtonProps) {
   return (
     <button
-      className={cn('rounded-md border px-2 py-1 text-sm', className)}
+      className={cn(
+        'rounded-md border px-2 py-1 text-sm hover:bg-foreground/5',
+        className
+      )}
       {...props}
     >
       {label}
