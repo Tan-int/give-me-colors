@@ -108,7 +108,7 @@ function App() {
               <Github />
               <div className="flex flex-col">
                 <h5 className="font-semibold">Contribute!</h5>
-                <p className="text-sm">
+                <p className="text-sm opacity-75">
                   This tool is free and open source. Feel free to contribute!
                 </p>
               </div>
@@ -125,7 +125,7 @@ function App() {
               <PartyPopper />
               <div className="flex flex-col">
                 <h5 className="font-semibold">Ad Free!</h5>
-                <p className="text-sm">
+                <p className="text-sm opacity-75">
                   This tool will stay ad free. Send me a coffee if you're
                   feeling generous!
                 </p>
