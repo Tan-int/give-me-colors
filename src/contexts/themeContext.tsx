@@ -16,7 +16,7 @@ type ThemeProviderProps = {
 export const ThemeProvider = ({ children }: ThemeProviderProps) => {
   const getInitialTheme = (): Theme => {
     const storedTheme = localStorage.getItem('theme');
-    return storedTheme === 'dark' ? 'dark' : 'light';
+    return storedTheme === 'light' ? 'light' : 'dark';
   };
 
   const [theme, setTheme] = useState<Theme>(getInitialTheme);
