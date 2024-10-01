@@ -6,7 +6,7 @@ export default function ColorSwatchListContainer({
   children,
 }: ColorSwatchListContainerProps) {
   return (
-    <div className="flex w-full flex-col items-center gap-y-3 rounded-lg bg-surface px-2 py-3 md:bg-transparent lg:flex-col-reverse">
+    <div className="flex w-full flex-col items-center gap-y-3 rounded-lg border bg-surface px-2 py-3 shadow md:border-none md:bg-transparent md:shadow-none lg:flex-col-reverse">
       {children}
     </div>
   );

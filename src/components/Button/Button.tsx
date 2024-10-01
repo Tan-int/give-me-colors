@@ -9,7 +9,7 @@ export default function Button({ className, label, ...props }: ButtonProps) {
   return (
     <button
       className={cn(
-        'rounded-md border px-2 py-1 text-sm hover:bg-foreground/5',
+        'rounded-md border px-3 py-2 text-sm font-medium hover:bg-foreground/5',
         className
       )}
       {...props}
