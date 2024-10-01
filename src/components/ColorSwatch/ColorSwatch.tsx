@@ -15,7 +15,7 @@ export default function ColorSwatch({ hex }: ColorSwatchProps) {
 
   return (
     <div
-      className="group flex size-full h-7 w-7 items-center justify-center rounded-full md:relative md:h-16 md:w-full md:rounded-none lg:w-full"
+      className="group flex size-full h-7 w-7 items-center justify-center rounded-full hover:cursor-pointer md:relative md:h-16 md:w-full md:rounded-none lg:w-full"
       style={{ backgroundColor: hex }}
       onClick={handleClick}
     >
