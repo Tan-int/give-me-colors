@@ -131,7 +131,9 @@ function App() {
                 </p>
               </div>
               <div className="w-full">
-                <Button label="Send Coffee" />
+                <a href="https://buymeacoffee.com/tanduong" target="_blank">
+                  <Button label="Send Coffee" />
+                </a>
               </div>
             </Card>
           </ContributionSection>
