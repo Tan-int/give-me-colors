@@ -1,4 +1,4 @@
-import ColorSwatch from '@/components/ColorSwatch';
+import { ColorSwatch } from '@/components';
 
 type ColorSwatchListProps = {
   colorCodes: string[];

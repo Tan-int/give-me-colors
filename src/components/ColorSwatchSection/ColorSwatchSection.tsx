@@ -1,6 +1,5 @@
+import { ColorSwatchList, ColorSwatchListContainer } from '@/components';
 import * as chroma from 'chroma.ts';
-import ColorSwatchList from '@/components/ColorSwatchList';
-import ColorSwatchListContainer from '@/components/ColorSwatchListContainer';
 
 type ColorSwatchSectionProps = {
   colorCode: string;

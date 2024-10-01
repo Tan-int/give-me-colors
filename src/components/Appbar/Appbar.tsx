@@ -1,6 +1,5 @@
 import { logo } from '@/assets';
-import ThemeToggle from '@/components/ThemeToggle';
-import Github from '@/components/GithubIcon';
+import { ThemeToggle, Github } from '@/components';
 
 export default function Appbar() {
   return (
