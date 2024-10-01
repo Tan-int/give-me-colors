@@ -1,7 +1,19 @@
-import Appbar from '@/components/Appbar';
-import ColorInfo from '@/components/ColorInfo';
-import ColorInfoContainer from '@/components/ColorInfoContainer';
-import Input from '@/components/Input';
+import {
+  Appbar,
+  Button,
+  Card,
+  ChromaSlider,
+  ColorConversionSection,
+  ColorInfo,
+  ColorInfoContainer,
+  ColorSwatchSection,
+  ContributionSection,
+  Github,
+  Header,
+  Input,
+  MainSection,
+  PageLayout,
+} from '@/components';
 import useColorConverter from '@/hooks/useColorConverter';
 import {
   INITIAL_COLOR_CODE,
@@ -10,18 +22,8 @@ import {
   MINIMUM_LIGHTNESS_VALUE,
   MINIMUM_SATURATION_VALUE,
 } from '@/lib/utils/constants';
-import { ChangeEvent, useState } from 'react';
-import InputRange from '@/components/ChromaSlider';
 import { Droplet, Droplets, Moon, PartyPopper, SunDim } from 'lucide-react';
-import ColorSwatchSection from '@/components/ColorSwatchSection';
-import MainSection from '@/components/Sections/MainSection';
-import Header from '@/components/Header';
-import PageLayout from '@/components/PageLayout';
-import ColorConversionSection from '@/components/Sections/ColorConversionSection';
-import Github from '@/components/GithubIcon';
-import Card from '@/components/Card';
-import Button from '@/components/Button';
-import ContributionSection from '@/components/Sections/ContributionSection';
+import { ChangeEvent, useState } from 'react';
 
 function App() {
   const [input, setInput] = useState<string>(INITIAL_COLOR_CODE);
@@ -76,7 +78,7 @@ function App() {
               style={{ background: hex }}
             >
               <div className="slider-container invisible group-hover:visible">
-                <InputRange
+                <ChromaSlider
                   value={lightness}
                   onChange={onLightnessRangeChange}
                   onIncrease={lighten}
@@ -86,9 +88,8 @@ function App() {
                 >
                   <Moon className="h-3 w-3" color="#F6F8F9" />
                   <SunDim className="h-3 w-3" color="#F6F8F9" />
-                </InputRange>
-
-                <InputRange
+                </ChromaSlider>
+                <ChromaSlider
                   value={saturation}
                   onChange={onSaturationRangeChange}
                   onIncrease={saturate}
@@ -98,7 +99,7 @@ function App() {
                 >
                   <Droplet className="h-3 w-3" color="#F6F8F9" />
                   <Droplets className="h-3 w-3" color="#F6F8F9" />
-                </InputRange>
+                </ChromaSlider>
               </div>
             </div>
           </ColorConversionSection>
