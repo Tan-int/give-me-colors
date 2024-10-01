@@ -56,6 +56,7 @@ function App() {
             <div className="flex w-full flex-col gap-y-8">
               <div className="flex flex-row items-center gap-x-4">
                 <Input
+                  type="search"
                   value={input}
                   onChange={handleInputChange}
                   className="flex-1 text-base"
