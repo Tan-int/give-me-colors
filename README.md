@@ -2,13 +2,11 @@
   <img src="/src/assets/logo.png" alt="logo" width="150">
   <h2>Give Me Colors - Ad Free Color Playground</h2>
   <p>Give Me Colors is an <b>open source and ad free</b> color playground. </p>
-  <p>Try it here: https://give-me-colors.vercel.app/</p>
+  <p>Try it here: <a href="https://give-me-colors.vercel.app/" target="_blank">Give Me Colors</a></p>
 </div>
 
-
-
-
 ## Features
+
 Give Me Colors can be used to convert color codes between different formats. <br>
 It currently supports conversions between Hex, RGB, and HSL.
 
