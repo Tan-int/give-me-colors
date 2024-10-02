@@ -1,50 +1,18 @@
-# React + TypeScript + Vite
+<div align="center">
+  <img src="/src/assets/logo.png" alt="logo" width="150">
+  <h2>Give Me Colors - Ad Free Color Playground</h2>
+  <p>Give Me Colors is an <b>open source and ad free</b> color playground. </p>
+  <p>Try it here: https://give-me-colors.vercel.app/</p>
+</div>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+## Features
+Give Me Colors can be used to convert color codes between different formats. <br>
+It currently supports conversions between Hex, RGB, and HSL.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Give Me Colors can also help in finding the perfect color for your use case. <br>
+Adjust the brightness or saturation of a color, or play around with the provided color palettes.
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+![image](https://github.com/user-attachments/assets/7a20bcbc-d7ff-487f-b1c3-5ab54993f738)
