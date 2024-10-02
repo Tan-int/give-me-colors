@@ -8,7 +8,7 @@ import ColorInfoContainer from './ColorInfoContainer';
 import ColorSwatch from './ColorSwatch';
 import ColorSwatchList from './ColorSwatchList';
 import ColorSwatchListContainer from './ColorSwatchListContainer';
-import ColorSwatchSection from './ColorSwatchSection';
+import ColorSwatchSection from './Sections/ColorSwatchSection';
 import Github from './GithubIcon';
 import Header from './Header';
 import Input from './Input';
