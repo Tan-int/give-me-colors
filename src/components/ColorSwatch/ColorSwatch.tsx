@@ -6,11 +6,11 @@ type ColorSwatchProps = {
 };
 
 export default function ColorSwatch({ hex }: ColorSwatchProps) {
-  const hexToUpper = hex.toUpperCase();
   const { isCopied, copyToClipboard } = useCopyToClipboard();
+  const hexToUpper = hex.toUpperCase();
 
   const handleClick = () => {
-    copyToClipboard(hex);
+    copyToClipboard(hexToUpper);
   };
 
   return (
