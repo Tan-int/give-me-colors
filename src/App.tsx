@@ -48,7 +48,7 @@ function App() {
 
   return (
     <div className="flex h-screen flex-col items-center">
-      <PageLayout className="flex h-full w-full max-w-[1080px] flex-col px-8 pb-8 pt-4">
+      <PageLayout className="flex h-full w-full max-w-[1080px] flex-col px-8 pb-8 pt-4 lg:pt-8">
         <Appbar />
         <Header />
         <MainSection className="flex size-full flex-col gap-y-8 md:gap-y-4">
