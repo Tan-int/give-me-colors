@@ -20,7 +20,10 @@ export const getRgbCodeFromRgbString = (colorChannels: string[]) => {
 };
 
 export const getRgbValues = (colorCode: string) => {
-  const rgbMatch = colorCode.replace(/[^\d,]/g, '').split(',');
+  const rgbMatch = colorCode
+    .replace(/rgb\s*/i, '')
+    .replace(/[^\d.,\s]/g, '')
+    .split(/[\s,]+/);
 
   const hexMatch = colorCode
     .replace(/^#/, '')
