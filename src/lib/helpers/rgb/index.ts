@@ -36,7 +36,11 @@ export const getRgbValues = (colorCode: string) => {
     return getRgbCodeFromRgbString(rgbMatch);
   }
 
-  if (hslMatch && colorCode.toLowerCase().startsWith('hsl')) {
+  if (
+    hslMatch &&
+    colorCode.toLowerCase().startsWith('hsl') &&
+    hslMatch.length === 3
+  ) {
     return getRgbFromHsl(hslMatch);
   }
 

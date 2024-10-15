@@ -25,6 +25,7 @@ import {
 import { Droplet, Droplets, Moon, PartyPopper, SunDim } from 'lucide-react';
 import { ChangeEvent, useState } from 'react';
 
+//TODO: Add Error Boundaries
 function App() {
   const [input, setInput] = useState<string>(INITIAL_COLOR_CODE);
   const {

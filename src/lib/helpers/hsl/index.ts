@@ -8,11 +8,14 @@ import {
 } from '@/lib/utils/constants';
 
 export const getRgbFromHsl = (colorChannels: string[]) => {
-  const [h, s, l] = colorChannels;
+  const [hue, saturation, lightness] = colorChannels.map(channel => {
+    const parsedColorChannel = parseInt(channel);
 
-  const hue = parseInt(h);
-  const saturation = parseInt(s);
-  const lightness = parseInt(l);
+    if (isNaN(parsedColorChannel)) return 0;
+
+    return parsedColorChannel;
+  });
+
   const [r, g, b] = hslToRgb(hue, saturation, lightness);
 
   return [r, g, b, hue, saturation, lightness];
