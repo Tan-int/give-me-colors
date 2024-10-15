@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect, ReactNode } from 'react';
+import { createContext, useState, ReactNode } from 'react';
 
 type Theme = 'light' | 'dark';
 
@@ -14,6 +14,7 @@ type ThemeProviderProps = {
 };
 
 export const ThemeProvider = ({ children }: ThemeProviderProps) => {
+  // get initial theme or default to dark on undefined
   const getInitialTheme = (): Theme => {
     const storedTheme = localStorage.getItem('theme');
     return storedTheme === 'light' ? 'light' : 'dark';
@@ -21,17 +22,9 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
 
   const [theme, setTheme] = useState<Theme>(getInitialTheme);
 
-  useEffect(() => {
-    const storedTheme = localStorage.getItem('theme');
-    if (storedTheme === 'light' || storedTheme === 'dark') {
-      setTheme(storedTheme);
-    }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem('theme', theme);
-    document.documentElement.classList.toggle('dark', theme === 'dark');
-  }, [theme]);
+  // set theme each time provider renders, will render on mount and theme change
+  localStorage.setItem('theme', theme);
+  document.documentElement.classList.toggle('dark', theme === 'dark');
 
   const toggleTheme = () => {
     setTheme(prevTheme => (prevTheme === 'light' ? 'dark' : 'light'));
